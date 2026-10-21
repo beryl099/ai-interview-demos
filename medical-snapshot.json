@@ -1,0 +1,83 @@
+{
+  "schema": 2,
+  "reportDate": "2026-10-20",
+  "files": {
+    "A": "# A 大盘｜AI 医疗竞对日报\n\n**报告日期：2026 年 10 月 20 日（中国时间 00:00—24:00）**\n\n## 一、行业动态\n\n### 1. Optum 与 Syneos Health 宣布合作开发 AI 辅助临床试验模式\n\n- **实际发生日期：**2026 年 10 月 20 日（合作公布；协议签署日期未披露）\n- **发布时间：**2026 年 10 月 20 日 09:00 美国东部时间，即中国时间 21:00\n- **事实摘要：**双方拟结合 Optum 的医疗数据与 AI 资源、Syneos Health 的临床试验运营能力，探索试验方案模拟、受试者与研究中心匹配等应用。目前公告描述的是合作开发计划，未披露已实现的试验成效。\n- **具体来源：**[Syneos Health 公司新闻稿](https://www.globenewswire.com/news-release/2026/10/20/3384520/33420/en/optum-and-syneos-health-partner-to-advance-an-adaptive-clinical-development-model.html)\n- **核验状态：**已核验公司发布的具体新闻稿及发布时间。\n\n### 2. 医疗 AI 企业 Baba 宣布完成 4000 万美元 A 轮融资\n\n- **实际发生日期：**2026 年 10 月 20 日（融资公布；交割日期未披露）\n- **发布时间：**2026 年 10 月 20 日 10:00 美国东部时间，即中国时间 22:00\n- **事实摘要：**Baba 宣布完成由 FirstMark Capital 领投的 4000 万美元 A 轮融资，称资金将用于扩充照护团队、推进 AI 研究及拓展与健康保险计划的合作。融资金额与用途均为公司披露。\n- **具体来源：**[Baba 公司新闻稿](https://www.globenewswire.com/news-release/2026/10/20/3384598/0/en/applied-ai-company-baba-raises-40-million-series-a-to-improve-the-medicare-experience.html)\n- **核验状态：**已核验公司发布的具体新闻稿及发布时间。\n\n## 二、国内竞对动态\n\n### 1. 蚂蚁百灵发布 Ming-3.0 语音模型系列，报道指其用于蚂蚁阿福\n\n- **实际发生日期：**2026 年 10 月 20 日（模型发布）；阿福相关功能的首次上线日期未披露\n- **发布时间：**2026 年 10 月 20 日 10:08（所查转载页面）\n- **事实摘要：**蚂蚁百灵发布覆盖语音合成、音频理解与语音识别的 Ming-3.0 系列。署名来源为“百灵大模型”的转载文章称，其中的语音能力已用于阿福 App 对话、语音通话及阿福医生助手；官方模型页可确认相关模型存在，但未确认这些医疗场景的部署日期。\n- **具体来源：**[百灵大模型文章转载页](https://www.nxrte.com/jishu/72650.html)；[蚂蚁百灵官方模型页](https://huggingface.co/collections/inclusionAI/ming-30)\n- **核验状态：****部分核验**。模型已在官方页面核对；阿福应用说法仅核对到转载内容，**未核验**发布方原文。\n\n## 三、海外竞对动态\n\n### 1. Oracle 与阿斯利康宣布探索 AI 与真实世界数据在临床研究中的应用\n\n- **实际发生日期：**2026 年 10 月 20 日（合作公布；协议签署日期未披露）\n- **发布时间：**Oracle 官网标注 2026 年 10 月 20 日，未列具体时刻\n- **事实摘要：**双方宣布一项非约束性协议，拟探索用 AI 和真实世界数据识别临床试验适格患者、加快证据生成，并将研究信息用于诊疗流程。公告未称相关能力已经落地。\n- **具体来源：**[Oracle 官方公告](https://www.oracle.com/news/announcement/oracle-and-astrazeneca-partner-to-advance-ai-enabled-healthcare-2026-10-20/)\n- **核验状态：**已核验官方具体公告；官网未提供可直接换算为中国时间的发布时刻。\n\n### 2. Rhapsody 公布 Guardian 的医疗 AI 智能体访问治理能力\n\n- **实际发生日期：**2026 年 10 月 20 日（本次能力公布）\n- **发布时间：**2026 年 10 月 20 日 08:00 美国东部时间，即中国时间 20:00\n- **事实摘要：**Rhapsody 称 Guardian 可对访问医疗数据与服务的 AI 智能体进行身份认证、权限与频率控制，并记录智能体及 API 活动。Guardian 产品名称此前已存在；本次公告聚焦 AI 智能体访问治理能力。\n- **具体来源：**[Rhapsody 公司新闻稿](https://www.prnewswire.com/news-releases/rhapsody-launches-guardian-to-govern-ai-agent-and-api-access-to-healthcare-data-and-services-302913231.html)\n- **核验状态：**已核验公司发布的具体新闻稿及发布时间。",
+    "B": "# B 行业前沿｜2026 年 10 月 20 日\n\n统计口径：中国时间 00:00—24:00。以下“实际发生日期”指可核实的**对外宣布日期**；融资的法律交割日期未见披露。\n\n## 四、新兴创业公司雷达\n\n### 1. Baba 宣布完成 4000 万美元 A 轮融资\n\n- **实际发生日期：**2026-10-20（中国时间，对外宣布）\n- **发布时间：**2026-10-20 22:00（中国时间；原文为美东时间 10:00）\n- **事实摘要：**Baba 宣布完成由 FirstMark Capital 领投的 4000 万美元 A 轮融资。公司结合护理协调人员、持证治疗师与 AI，为美国 Medicare 和 Medicaid 人群提供就医、费用及生活需求协调服务；资金拟用于扩充临床团队、AI 研究和健康保险计划合作。\n- **具体来源链接：**[Baba 发布的融资公告](https://www.globenewswire.com/news-release/2026/10/20/3384598/0/en/applied-ai-company-baba-raises-40-million-series-a-to-improve-the-medicare-experience.html)\n- **核验状态：**已核验公司通稿；融资交割日期未披露。\n- **业务判断：**推断：融资规模及医保人群服务定位，使其值得关注；后续关键在于 AI 能否持续降低复杂照护的协调成本。\n\n### 2. Sunlight AI 公开亮相并宣布 1740 万美元种子轮融资\n\n- **实际发生日期：**2026-10-20（中国时间，对外宣布并公开亮相）\n- **发布时间：**2026-10-20 05:16（中国时间；原文为美东时间 10 月 19 日 17:16）\n- **事实摘要：**Sunlight AI 宣布公开亮相、完成 1740 万美元种子轮融资，并收购 Bradford Medical Associates。公司以 AI、软件和人工服务处理独立诊所的经营及收款事务，目标是让医生保有诊所所有权与临床控制权。创始人 Sina Chehrazi 此前创办 Nayya Health。\n- **具体来源链接：**[Sunlight AI 发布的公告](https://www.prnewswire.com/news-releases/sunlight-ai-launches-with-17-4m-to-help-physicians-thrive-independently-302913153.html)\n- **核验状态：**已核验公司通稿；融资交割及收购完成的具体日期未披露。\n- **业务判断：**推断：其将 AI 运营工具与诊所服务结合，方向价值取决于能否改善独立诊所的行政成本和回款表现。\n\n### 3. Vinyl Health 宣布完成 200 万美元种子轮融资\n\n- **实际发生日期：**2026-10-20（中国时间，对外宣布）\n- **发布时间：**2026-10-20 20:00（中国时间；转载通稿标注美东时间 08:00）\n- **事实摘要：**Vinyl Health 宣布获得 HealthX Ventures 领投的 200 万美元种子轮融资，用于推广面向患者的个人健康助手。产品利用环境感知 AI 记录就诊内容，并整合健康记录，帮助患者及家属理解和分享后续照护信息。创始人兼 CEO Kaitlan Baston 曾任新泽西州卫生专员。\n- **具体来源链接：**[Business Wire 原始发布页](https://www.businesswire.com/news/home/20261020052212/en/)；[公司通稿全文转载](https://wbnstv.marketminute.com/article/bizwire-2026-10-20-vinyl-health-raises-2m-from-healthx-ventures-to-help-patients-record-understand-and-share-their-care)\n- **核验状态：**部分核验：已核对公司通稿全文转载及公司[产品介绍](https://www.vinylhealth.ai/about)；Business Wire 原始发布页未能打开，融资交割日期未披露。\n- **业务判断：**推断：其关注点在患者和家属使用的 AI 工具；融资规模较小，后续需观察产品使用与付费情况。\n\n## 五、疾病疗法前沿\n\n**无符合条件的可核验重大动态。** 本次检索未发现能同时确认报告日发生、具有明确 AI 属性，且达到获批上市、重要临床里程碑或重磅融资门槛的中美疾病疗法事件。",
+    "C": "# 六、高管动态\n\n**报告期：2026 年 10 月 20 日 00:00—24:00（中国时间）**\n\n经检索公开来源，本期未发现符合范围、且可核验发生于报告期内的高管动态。\n\n### OpenAI\n\n本期无高管动态。\n\n### Anthropic\n\n本期无高管动态。\n\n### Meta\n\n本期无高管动态。\n\n### Google DeepMind\n\n本期无高管动态。\n\n### xAI\n\n本期无高管动态。\n\n**核验说明：** [OpenAI 生物安全活动页面](https://forum.openai.com/public/events/in-person-event-biodefense-in-the-ai-age-yd1s8kqa1z)所列活动时间换算后落在报告期内，但页面未提供高管发言实录。[Anthropic 蝎毒蛋白结合体研究稿](https://www.anthropic.com/research/claude-scorpion-toxin-binder-design)署期 10 月 20 日，未载明具名高管的动作或观点；其精确发布时间也不足以核定是否落在中国时间报告期内。两者均未列为高管动态。",
+    "D": "# D｜补充信源整理（2026-10-20，中国时间）\n\n今日无补充信源。\n\n## 一、行业动态\n\n无补充素材。\n\n## 二、国内竞对\n\n无补充素材。\n\n## 三、海外竞对\n\n无补充素材。\n\n## 四、新兴创业公司雷达\n\n无补充素材。\n\n## 五、疾病疗法前沿\n\n无补充素材。\n\n## 六、高管动态\n\n无补充素材。",
+    "E": "# 每日速递\n\n**报告日期：2026 年 10 月 20 日，中国时间 00:00—24:00。**\n\n本期核实 5 条当日动态：Optum 与 Syneos Health、Oracle 与阿斯利康分别公布临床研究合作；Rhapsody 公布 Guardian 的 AI 智能体访问治理方案；Baba 和 Sunlight AI 公布融资。Sunlight AI 的公告发表于美东 10 月 19 日傍晚，折算后属于北京时间 10 月 20 日。Baba 在 A、B 两份材料中重复，本期只收录一次。\n\n# 行业动态\n\n## Optum 与 Syneos Health 公布 AI 辅助临床开发合作\n\n- **所属板块：**行业动态\n- **实际发生日期：**2026 年 10 月 20 日（对外公布；协议签署日期未披露）\n- **发布时间：**2026 年 10 月 20 日 09:00 美东时间，即北京时间 21:00\n- **事实摘要：**双方拟结合 Optum 的医疗行业资源与 AI 能力、Syneos Health 的临床试验运营能力，开发试验方案模拟、患者与研究中心匹配等应用。公告描述的是合作计划，未披露已实现的试验成效。\n- **具体来源链接：**[Syneos Health 公司新闻稿](https://www.globenewswire.com/news-release/2026/10/20/3384520/33420/en/optum-and-syneos-health-partner-to-advance-an-adaptive-clinical-development-model.html)\n- **核验状态：**已核验具体通稿、事实及发布时间。\n\n# 国内竞对\n\n**无通过本期核验口径的重大动态。**蚂蚁百灵候选及未收录原因见文末。\n\n# 海外竞对\n\n## Oracle 与阿斯利康公布 AI 和真实世界数据合作意向\n\n- **所属板块：**海外竞对\n- **实际发生日期：**2026 年 10 月 20 日（对外公布；协议签署日期未披露）\n- **发布时间：**2026 年 10 月 20 日 00:51 美东时间，即北京时间 12:51\n- **事实摘要：**双方公布一项非约束性协议，拟探索利用 AI 和真实世界数据识别临床试验适格患者、加快证据生成，并将研究信息用于诊疗流程。公告未称相关能力已经落地。\n- **具体来源链接：**[Oracle 官方公告](https://www.oracle.com/news/announcement/oracle-and-astrazeneca-partner-to-advance-ai-enabled-healthcare-2026-10-20/)；[Oracle 发布的带时间通稿](https://www.prnewswire.com/news-releases/oracle-and-astrazeneca-partner-to-advance-ai-enabled-healthcare-innovation-302913441.html)\n- **核验状态：**已核验公告内容；通过带时间通稿核定北京时间。\n\n## Rhapsody 公布 Guardian 的 AI 智能体访问治理方案\n\n- **所属板块：**海外竞对\n- **实际发生日期：**2026 年 10 月 20 日（本次对外公布）\n- **发布时间：**2026 年 10 月 20 日 08:00 美东时间，即北京时间 20:00\n- **事实摘要：**Rhapsody 称 Guardian 可认证访问医疗数据与服务的 AI 智能体，执行权限和频率控制，并记录智能体及 API 活动。本次收录的是 10 月 20 日的治理方案公告，不将 Guardian 名称视为首次出现。\n- **具体来源链接：**[Rhapsody 公司公告](https://rhapsody.health/blog/rhapsody-launches-guardian-to-govern-ai-agent-and-api-access-to-healthcare-data-and-services/)；[带时间的公司通稿](https://www.prnewswire.com/news-releases/rhapsody-launches-guardian-to-govern-ai-agent-and-api-access-to-healthcare-data-and-services-302913231.html)\n- **核验状态：**已核验具体公告及发布时间。\n\n# 新兴创业公司雷达\n\n## Baba 公布 4000 万美元 A 轮融资\n\n- **所属板块：**新兴创业公司雷达\n- **实际发生日期：**2026 年 10 月 20 日（对外公布；融资交割日期未披露）\n- **发布时间：**2026 年 10 月 20 日 10:00 美东时间，即北京时间 22:00\n- **事实摘要：**Baba 宣布获得由 FirstMark Capital 领投的 4000 万美元 A 轮融资。公司称将推进 AI 研究、扩充照护团队并拓展与健康保险计划的合作。\n- **具体来源链接：**[Baba 公司融资公告](https://www.globenewswire.com/news-release/2026/10/20/3384598/0/en/applied-ai-company-baba-raises-40-million-series-a-to-improve-the-medicare-experience.html)\n- **核验状态：**已核验公司通稿及发布时间；融资交割日期未披露。\n- **业务判断：**推断：其将 AI 与人工照护协调结合，后续值得观察服务成本和保险计划合作进展。\n\n## Sunlight AI 公开亮相并公布 1740 万美元种子轮融资\n\n- **所属板块：**新兴创业公司雷达\n- **实际发生日期：**2026 年 10 月 20 日（北京时间对外公布；融资交割及所述收购的完成日期未披露）\n- **发布时间：**2026 年 10 月 19 日 17:16 美东时间，即北京时间 10 月 20 日 05:16\n- **事实摘要：**Sunlight AI 宣布公开亮相、获得 1740 万美元种子轮融资，并公布收购 Bradford Medical Associates。公司称将结合 AI、软件和人工服务处理独立诊所的经营事务，同时保留医生对诊所和临床工作的控制权。\n- **具体来源链接：**[Sunlight AI 公司通稿](https://www.prnewswire.com/news-releases/sunlight-ai-launches-with-17-4m-to-help-physicians-thrive-independently-302913153.html)\n- **核验状态：**已核验公司通稿及发布时间；未将未披露的交割、收购完成日期写作当日发生。\n- **业务判断：**推断：其价值取决于能否持续改善独立诊所的行政成本与回款表现。\n\n# 疾病疗法前沿\n\n**无符合本期口径、可核验发生于报告日的重大动态。**\n\n# 高管动态\n\n**无符合本期范围、可核验发生于报告日的重大动态。**\n\n## 未收录候选与原因\n\n- **所属板块：**国内竞对；**标题：**蚂蚁百灵 Ming-3.0 语音系列及阿福应用；**实际发生日期：**媒体称模型于 2026 年 10 月 20 日发布，阿福相关功能的部署日期未核验；**发布时间：**所查[IT 之家具体报道](https://www.ithome.com/1/015/117.htm)为当日 09:34:53；**事实摘要：**[蚂蚁百灵官方模型列表](https://huggingface.co/collections/inclusionAI/ming-30)可确认模型存在，媒体报道其用于阿福，但未核对到发布方关于医疗场景部署及日期的原文；**具体来源链接：**[报道](https://www.ithome.com/1/015/117.htm)、[官方模型列表](https://huggingface.co/collections/inclusionAI/ming-30)；**核验状态：****未核验**医疗应用原文及部署日期，因此未作为医疗竞对动态收录。\n\n- **所属板块：**新兴创业公司雷达；**标题：**Vinyl Health 200 万美元种子轮融资；**实际发生日期：**转载通稿称于 2026 年 10 月 20 日对外宣布，融资交割日期未披露；**发布时间：**转载页标注当日 08:00 美东时间，即北京时间 20:00；**事实摘要：**[通稿转载页](https://wbnstv.marketminute.com/article/bizwire-2026-10-20-vinyl-health-raises-2m-from-healthx-ventures-to-help-patients-record-understand-and-share-their-care)称融资由 HealthX Ventures 领投；**具体来源链接：**[Business Wire 原始发布页](https://www.businesswire.com/news/home/20261020052212/en/)、[通稿转载页](https://wbnstv.marketminute.com/article/bizwire-2026-10-20-vinyl-health-raises-2m-from-healthx-ventures-to-help-patients-record-understand-and-share-their-care)；**核验状态：****未核验**原始发布页，融资事实与原始发布时间无法独立复核，因此剔除。"
+  },
+  "skills": [
+    {
+      "agent": "A",
+      "name": "大盘",
+      "content": "# A 大盘\n仅负责三段：一、行业动态；二、国内竞对动态；三、海外竞对动态。报告日按中国时间 00:00—24:00。\n独立检索 AI+医疗健康行业政策、大厂产品、市场数据；国内重点观察腾讯健康、蚂蚁阿福等；海外重点观察 OpenAI、NVIDIA、Abridge、Oura、Google 等。只收与医疗健康或生命科学直接相关的更新。\n每条写标题、实际发生日期、发布日期、事实摘要、具体原文链接及核验状态。优先官方公告、监管机构、医院或公司原文。只在本文件内去重；跨日去重交 E。没有核实到的当日动态就明确写无重大动态。\n输出独立 Markdown 板块文件，不写 B/C/D 的内容。",
+      "version": 1,
+      "updated_at": "2026-10-21T00:31:51+08:00"
+    },
+    {
+      "agent": "B",
+      "name": "行业前沿",
+      "content": "# B 行业前沿\n仅负责四、新兴创业公司雷达；五、疾病疗法前沿。报告日按中国时间 00:00—24:00。\n创业公司：AI+医疗健康新公司，重点是融资、知名创业者、大厂高管离职创业；写清在做什么、为何受关注、方向价值。疾病疗法：中美罕见病、疑难杂症或慢性病中有明确 AI 属性的新器械、术式或药物；仅收获批上市、重要临床里程碑、重磅融资等突破。纯非 AI 事项不收。\n每条写标题、实际发生日期、发布日期、事实摘要、具体原文链接及核验状态。只在本文件内去重；跨日去重交 E。无可核验重大更新时如实说明。\n输出独立 Markdown 板块文件，不写 A/C/D 的内容。",
+      "version": 1,
+      "updated_at": "2026-10-21T00:31:51+08:00"
+    },
+    {
+      "agent": "C",
+      "name": "高管动态",
+      "content": "# C 高管动态\n仅负责六、高管动态，最终日报放在结尾。报告日按中国时间 00:00—24:00。\n按公司分节，观察 OpenAI、Anthropic、Meta、Google DeepMind、xAI 等高管与医疗健康或生命科学相关的公开发言、访谈、播客、社媒观点、离职创业、加入新公司或组织调整。综合方向的高管若内容与医疗健康相关也可收。前 OpenAI 高管的相关动态归入 OpenAI 小节。\n每条写公司、姓名职位、核心动作或观点、实际发生日期、发布日期、具体原文链接和核验状态。英文来源用中文转述。单一来源注明存疑，无法核实时不写成确定事实。无动态时写“本期无高管动态”。\n输出独立 Markdown 板块文件；只在本文件内去重。",
+      "version": 1,
+      "updated_at": "2026-10-21T00:31:51+08:00"
+    },
+    {
+      "agent": "D",
+      "name": "补充信源",
+      "content": "# D 补充信源整理\n本任务把本期人工粘贴的公众号、小红书等区域信源整理成独立文件。补充素材与本 Skill 是两列不同的数据。\n逐条阅读补充素材，按一、行业动态；二、国内竞对；三、海外竞对；四、新兴创业公司雷达；五、疾病疗法前沿；六、高管动态分类。保留具体原文链接、发布日期和实际发生日期，标注核验状态。公众号或社媒账号页不能代替具体文章原文。只在本文件内去重；跨日去重交 E。\n若本期补充信源为空，输出“今日无补充信源”，并保留六类标题。不得自行填充未提供的人工素材。",
+      "version": 1,
+      "updated_at": "2026-10-21T00:31:51+08:00"
+    },
+    {
+      "agent": "E",
+      "name": "整合日报",
+      "content": "# E 整合日报\n必须等 A/B/C/D 四份独立板块文件均完成后才执行。按顺序读完四份文件，在同一期内跨文件去重，并与历史已完成日报跨日去重。\n对每条候选做逆向时间戳核验：重新查具体来源，确认事实及实际发生日期处于报告日；近 7 日重大遗漏可标注“补录：非当日”，查无此事或日期不符的剔除并列明原因。若有第二个独立来源，可用“来源1、来源2”链接交叉印证；不可把搜索结果、媒体首页当作原文。\n输出一篇完整 Markdown 日报。第一个一级标题为“每日速递”，随后依次为“行业动态”“国内竞对”“海外竞对”“新兴创业公司雷达”“疾病疗法前沿”“高管动态”。每日速递是正文首节，不单独成稿。每条保留原始来源及核验状态；事实和推断分开。没有内容的板块也保留并说明无重大动态。\n仅生成本地文件，供用户在网页检查和导出 Word。",
+      "version": 1,
+      "updated_at": "2026-10-21T00:31:51+08:00"
+    }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "name": "官方公告与产品更新",
+      "entry": "公司、医院、监管机构的具体公告或产品更新页",
+      "kind": "原始来源",
+      "agents": "A,B,C",
+      "enabled": 1
+    },
+    {
+      "id": 2,
+      "name": "医疗 AI 行业媒体",
+      "entry": "Healthcare AI Guy; Endpoints News; Fierce Healthcare; HIT Consultant",
+      "kind": "发现线索",
+      "agents": "A,B",
+      "enabled": 1
+    },
+    {
+      "id": 3,
+      "name": "中文公众号",
+      "entry": "AI医疗观察; 探针资本; 智药局; Med AI观察; Boom Health",
+      "kind": "发现线索",
+      "agents": "A,B,C,D",
+      "enabled": 1
+    },
+    {
+      "id": 4,
+      "name": "行业研究",
+      "entry": "Rock Health; A16z Bio + Health; Peterson Health Technology Institute",
+      "kind": "发现线索",
+      "agents": "A,B",
+      "enabled": 1
+    }
+  ],
+  "supplementalSummary": "本期没有人工补充信源。"
+}

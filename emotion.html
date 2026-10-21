@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>情绪雷达 Alpha</title>
+  <style>
+    :root{
+      --bg:#060811;
+      --bg2:#111428;
+      --panel:rgba(16,19,35,.82);
+      --card:rgba(20,24,42,.86);
+      --ink:#f6f3ee;
+      --muted:#a0a8bf;
+      --line:rgba(255,255,255,.08);
+      --soft:rgba(255,255,255,.04);
+      --green:#39d67b;
+      --red:#ff6f82;
+      --gold:#f0bb57;
+      --navy:#1a2035;
+      --navy-soft:#262d45;
+      --accent:#7a5cff;
+      --accent2:#47b7ff;
+      --radius:30px;
+      --shadow:0 28px 80px rgba(0,0,0,.36);
+      --display:"Georgia","Times New Roman",serif;
+      --body:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;color:var(--ink);font-family:var(--body);background:
+      radial-gradient(circle at 18% 12%,rgba(122,92,255,.28),transparent 24%),
+      radial-gradient(circle at 82% 18%,rgba(71,183,255,.20),transparent 24%),
+      radial-gradient(circle at 50% 100%,rgba(122,92,255,.16),transparent 30%),
+      linear-gradient(180deg,var(--bg),var(--bg2) 50%,#080a12 100%)}
+    body{min-height:100vh}
+    button,input{font:inherit}
+    .app-shell{width:min(1240px,calc(100% - 36px));margin:0 auto}
+    .hidden{display:none !important}
+
+    .landing{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 0;
+      position:relative;
+      overflow:hidden;
+      background:#070b15;
+    }
+    .landing-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      pointer-events:none;
+      filter:saturate(1.08) brightness(.52) contrast(1.08);
+      transform:scale(1.04);
+    }
+    .landing-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(124,88,255,.30), transparent 26%),
+        radial-gradient(circle at 82% 82%, rgba(91,78,255,.24), transparent 24%),
+        radial-gradient(circle at 88% 18%, rgba(76,191,255,.14), transparent 18%),
+        linear-gradient(180deg, rgba(3,7,18,.16) 0%, rgba(5,8,17,.30) 52%, rgba(5,7,14,.46) 100%);
+      pointer-events:none;
+    }
+    .landing-card{
+      width:100%;
+      min-height:78vh;
+      background:linear-gradient(180deg, rgba(9,13,25,.22), rgba(11,15,28,.12));
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:42px;
+      box-shadow:var(--shadow);
+      padding:56px 58px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:30px;
+      backdrop-filter:blur(15px) saturate(122%);
+      -webkit-backdrop-filter:blur(15px) saturate(122%);
+      position:relative;
+      overflow:hidden;
+      box-shadow:
+        0 34px 100px rgba(0,0,0,.34),
+        0 0 0 1px rgba(255,255,255,.02),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(255,255,255,.02);
+    }
+    .landing-card:before{
+      content:"";
+      position:absolute;
+      inset:auto -120px -140px auto;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(122,92,255,.34),transparent 68%);
+      pointer-events:none;
+    }
+    .landing-card:after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.03) 30%, rgba(110,195,255,.10) 58%, rgba(128,98,255,.16) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:1;
+    }
+    .landing-logo,.mini-logo{
+      width:86px;
+      height:86px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.08);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        0 16px 36px rgba(0,0,0,.24);
+      position:relative;
+      overflow:hidden;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+    .logo-mark{
+      width:50px;
+      height:50px;
+      position:relative;
+      filter:drop-shadow(0 0 18px rgba(109,88,255,.22));
+    }
+    .logo-mark:before,
+    .logo-mark:after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:24px;
+      height:42px;
+      border:3px solid rgba(246,243,238,.92);
+      border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity:.92;
+      transform-origin:center;
+    }
+    .logo-mark:before{
+      transform:translate(-60%,-50%) rotate(38deg);
+      border-right-color:transparent;
+    }
+    .logo-mark:after{
+      transform:translate(-40%,-50%) rotate(-38deg);
+      border-left-color:transparent;
+    }
+    .logo-mark i{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:8px;
+      height:8px;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      background:linear-gradient(135deg,#a88dff,#4ec3ff);
+      box-shadow:0 0 0 4px rgba(122,92,255,.14),0 0 20px rgba(122,92,255,.52);
+    }
+    .landing-title{
+      margin:0;
+      font-family:var(--display);
+      font-size:82px;
+      line-height:1.04;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .landing-subtitle{
+      margin:0;
+      max-width:780px;
+      font-size:26px;
+      line-height:1.65;
+      color:rgba(236,239,250,.78);
+      letter-spacing:.06em;
+    }
+    .launch-btn{
+      width:320px;
+      height:98px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(135deg,#745dff 0%, #6d6fff 30%, #5793ff 68%, #4eb5ff 100%);
+      color:#fff;
+      font-family:var(--body);
+      font-size:28px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      box-shadow:
+        0 18px 44px rgba(86,129,255,.34),
+        inset 0 1px 0 rgba(255,255,255,.22),
+        inset 0 -1px 0 rgba(78,122,255,.22);
+    }
+    .launch-btn:hover{
+      transform:translateY(-2px);
+      filter:saturate(1.06) brightness(1.03);
+      box-shadow:
+        0 22px 52px rgba(86,129,255,.42),
+        inset 0 1px 0 rgba(255,255,255,.24),
+        inset 0 -1px 0 rgba(78,122,255,.24);
+    }
+
+    .workspace{
+      padding:34px 0 44px;
+    }
+    .workspace-header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:22px;
+    }
+    .workspace-header h1{
+      margin:0;
+      font-family:var(--display);
+      font-size:34px;
+      font-weight:700;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    .hero-copy{
+      padding:8px 4px 0 4px;
+      display:flex;
+      flex-direction:column;
+    }
+    .hero-copy h2{
+      margin:0 0 20px;
+      font-family:var(--display);
+      font-size:58px;
+      line-height:1.14;
+      font-weight:700;
+      max-width:8.5ch;
+    }
+    .hero-helper{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      margin:18px 0 18px;
+      flex-wrap:wrap;
+    }
+    .hero-tip{
+      flex:1 1 360px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 18px;
+      background:rgba(255,255,255,.04);
+      font-size:14px;
+      line-height:1.65;
+      color:var(--muted);
+    }
+    .action-btn,.watch-btn{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .action-btn{
+      min-width:170px;
+      padding:14px 22px;
+      font-size:18px;
+    }
+    .search-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .search-box{
+      flex:1 1 360px;
+    }
+    .search-box input{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      padding:16px 18px;
+      font-size:16px;
+      outline:none;
+      color:var(--ink);
+    }
+    .search-box input::placeholder{color:#8b94ae}
+    .stock-tabs{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+    .stock-tab,.watch{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--soft);
+      padding:18px 18px 16px;
+      transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .stock-tab{
+      cursor:pointer;
+      text-align:left;
+      color:var(--ink);
+    }
+    .stock-tab.active{
+      background:rgba(122,92,255,.12);
+      border-color:rgba(138,163,255,.28);
+    }
+    .stock-tab:hover,.watch:hover{transform:translateY(-2px)}
+    .stock-tab b,.watch b{
+      display:block;
+      margin-bottom:8px;
+      font-size:18px;
+    }
+    .stock-tab span,.watch p{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .right-rail{
+      border:1px solid var(--line);
+      border-radius:34px;
+      background:var(--panel);
+      padding:26px 24px;
+      display:grid;
+      gap:18px;
+      backdrop-filter:blur(18px);
+      min-height:100%;
+    }
+    .rail-title{
+      margin:0 0 8px;
+      font-family:var(--display);
+      font-size:22px;
+      font-weight:700;
+    }
+    .prediction-window{
+      min-height:178px;
+    }
+    .driver{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      border-radius:22px;
+      background:var(--navy);
+      color:#fff;
+      padding:18px 18px 16px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .driver b{display:block;margin-bottom:10px;font-size:20px}
+    .driver p{margin:0;color:rgba(255,255,255,.82);line-height:1.75;font-size:14px}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:92px;
+      min-height:124px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.14);
+      font-weight:700;
+      white-space:nowrap;
+      background:rgba(255,255,255,.06);
+    }
+    .good{color:var(--green)}
+    .warn{color:var(--gold)}
+    .bad{color:var(--red)}
+    .navy{color:#9aa7ff}
+    .news-window .feed-list{
+      display:grid;
+      gap:12px;
+      max-height:352px;
+      overflow:auto;
+      padding-right:4px;
+    }
+    .feed-card{
+      border-radius:18px;
+      background:var(--navy);
+      color:#fff;
+      padding:14px 14px 12px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .feed-card b{display:block;margin-bottom:8px;font-size:15px;line-height:1.45}
+    .feed-card p{display:none}
+    .feed-card a{color:#fff;text-decoration:none;font-weight:700}
+    .feed-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color:rgba(255,255,255,.62);
+      font-size:11px;
+      margin-bottom:10px;
+    }
+    .news-window{
+      order:-1;
+    }
+
+    .dashboard{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    .snapshot h3,.section-title{
+      margin:0 0 10px;
+      font-family:var(--display);
+      font-size:28px;
+      font-weight:700;
+    }
+    .snapshot-label{
+      margin:0 0 6px;
+      font-size:17px;
+      color:var(--muted);
+    }
+    .snapshot-name{
+      margin:0 0 16px;
+      font-family:var(--display);
+      font-size:52px;
+      font-weight:700;
+      line-height:1.1;
+    }
+    .signal-card{
+      border-radius:24px;
+      background:var(--navy);
+      color:#fff;
+      padding:20px 18px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .signal-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .signal-top strong{
+      font-size:22px;
+      color:#f3a444;
+    }
+    .signal-meter{
+      height:14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      overflow:hidden;
+      margin-bottom:14px;
+    }
+    .signal-meter span{
+      display:block;
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,#f4c96f,#f1a15c,#f39a49);
+      border-radius:999px;
+    }
+    .metric-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .metric{
+      border-radius:16px;
+      background:var(--navy-soft);
+      padding:14px;
+    }
+    .metric span{
+      display:block;
+      color:rgba(255,255,255,.66);
+      font-size:12px;
+      margin-bottom:7px;
+    }
+    .metric strong{
+      color:#fff;
+      font-size:22px;
+    }
+
+    .panel-box{
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:var(--panel);
+      padding:18px;
+      backdrop-filter:blur(18px);
+      min-height:100%;
+    }
+    .panel-inner{
+      background:var(--navy);
+      border-radius:24px;
+      padding:16px;
+      color:#fff;
+      min-height:268px;
+    }
+    .signal-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+    .signal-mini{
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06));
+      color:#f6f3ee;
+      border-radius:18px;
+      padding:16px 14px;
+      min-height:108px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 14px 28px rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .signal-mini small{
+      display:block;
+      margin-bottom:7px;
+      color:rgba(255,255,255,.58);
+      font-size:12px;
+    }
+    .signal-mini strong{
+      display:block;
+      font-size:18px;
+      margin-bottom:6px;
+    }
+    .signal-mini p{
+      margin:0;
+      color:rgba(255,255,255,.68);
+      line-height:1.6;
+      font-size:12px;
+    }
+
+    .bottom-grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:1.06fr .58fr .96fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .driver-grid,.factor-grid,.watch-grid{
+      display:grid;
+      gap:12px;
+    }
+    .emotion-card,.factor-card{
+      background:var(--navy);
+      color:#fff;
+      border-radius:18px;
+      padding:16px 16px 14px;
+      border:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .emotion-card b,.factor-card b{display:block;margin-bottom:8px;font-size:16px}
+    .emotion-card p,.factor-card p{margin:0;color:rgba(255,255,255,.74);line-height:1.7;font-size:13px}
+    .emotion-badge,.factor-badge{
+      min-width:56px;
+      height:56px;
+      border-radius:20px;
+      display:grid;
+      place-items:center;
+      background:#2d3558;
+      color:#cfd7ff;
+      font-size:12px;
+      padding:6px;
+      text-align:center;
+    }
+    .trend-card{
+      min-height:330px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      background:var(--panel);
+      padding:22px 22px 18px;
+      backdrop-filter:blur(18px);
+    }
+    .chart-box{
+      background:transparent;
+      border:0;
+      padding:12px 0 0;
+      height:auto;
+    }
+    .chart-box svg{
+      width:100%;
+      height:230px;
+      display:block;
+    }
+    .chart-note{
+      display:grid;
+      grid-template-columns:repeat(5,52px);
+      justify-content:space-between;
+      gap:10px;
+      margin-top:8px;
+    }
+    .chart-note-item{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      text-align:center;
+      padding:10px 6px;
+    }
+    .chart-note-item b{display:block;margin-bottom:6px}
+    .chart-note-item span{display:block;color:var(--muted);font-size:12px}
+    .chart-note-item.pending{
+      border-style:dashed;
+      color:rgba(255,255,255,.72);
+      background:rgba(255,255,255,.02);
+    }
+
+    .watch-grid{
+      grid-template-columns:repeat(3,1fr);
+      margin-top:12px;
+    }
+    .watch-btn{
+      margin-top:12px;
+      padding:10px 14px;
+      font-size:14px;
+    }
+
+    @media (max-width:1100px){
+      .hero-grid,.dashboard,.bottom-grid,.live-grid,.stock-tabs,.watch-grid,.signal-grid,.metric-row,.chart-note{
+        grid-template-columns:1fr;
+      }
+      .landing-title{font-size:64px}
+      .hero-copy h2{font-size:48px}
+      .snapshot-name{font-size:42px}
+    }
+    @media (max-width:720px){
+      .landing-card{padding:34px 28px}
+      .landing-title{font-size:48px}
+      .landing-subtitle{font-size:18px}
+      .launch-btn{width:100%;height:84px;font-size:24px}
+      .workspace-header h1{font-size:28px}
+      .hero-copy h2{font-size:38px}
+      .snapshot-name{font-size:34px}
+    }
+    .history-link{margin-left:auto;color:#fff;text-decoration:none;padding:10px 18px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(122,92,255,.18);font-size:14px;font-weight:700}
+    .history-link:hover{background:rgba(122,92,255,.35)}
+  </style>
+</head>
+<body>
+  <div id="landingScreen" class="landing">
+    <video class="landing-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="./emotion-animation.mp4" type="video/mp4">
+    </video>
+    <div class="landing-overlay"></div>
+    <div class="app-shell">
+      <section class="landing-card">
+        <div class="landing-logo"><span class="logo-mark"><i></i></span></div>
+        <h1 class="landing-title">情绪雷达 Alpha</h1>
+        <p class="landing-subtitle">观情见势，洞见先机</p>
+        <button id="launchButton" class="launch-btn">Get started now</button>
+      </section>
+    </div>
+  </div>
+
+  <div id="workspaceScreen" class="workspace hidden">
+    <div class="app-shell">
+      <header class="workspace-header">
+        <div class="mini-logo"><span class="logo-mark"><i></i></span></div>
+        <h1>情绪雷达 Alpha</h1>
+        <a class="history-link" href="./emotion-history.html">查看往期记录 →</a>
+      </header>
+
+      <section class="hero-grid">
+        <div class="hero-copy">
+          <h2>在波动中辨方向，在情绪中见先机。</h2>
+
+          <div class="search-row">
+            <div class="search-box">
+              <input id="searchInput" type="text" placeholder="输入港股股票名称或代码，例如：09992 / 腾讯 / 老铺黄金">
+            </div>
+            <button id="searchButton" class="action-btn">查看明日预测</button>
+          </div>
+
+          <div class="hero-helper">
+            <div class="hero-tip">支持自由输入港股代码或名称。更易受市场情绪影响的股票，通常更适合这套判断逻辑。</div>
+          </div>
+
+          <div class="section-title" style="font-size:20px;margin-top:18px;">示例股票</div>
+          <div id="stockTabs" class="stock-tabs"></div>
+        </div>
+
+        <aside class="right-rail">
+          <div>
+            <h3 class="rail-title">预测窗口</h3>
+            <div id="predictionWindow" class="prediction-window"></div>
+          </div>
+          <div class="news-window">
+            <h3 class="rail-title">新闻流</h3>
+            <div id="liveNewsList" class="feed-list"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="dashboard">
+        <div class="snapshot">
+          <p class="snapshot-label">个股快照</p>
+          <h2 id="heroName" class="snapshot-name">泡泡玛特 09992.HK</h2>
+
+          <div class="signal-card">
+            <div class="signal-top">
+              <strong id="heroProb">偏热 · 81</strong>
+              <span>实时情绪分</span>
+            </div>
+            <div class="signal-meter"><span id="heroMeter"></span></div>
+            <div class="metric-row">
+              <div class="metric"><span>情绪变化</span><strong id="heroRange">--</strong></div>
+              <div class="metric"><span>风险等级</span><strong id="heroRisk">--</strong></div>
+              <div class="metric"><span>情绪阶段</span><strong id="heroScore">--</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-box">
+          <h3 class="section-title">情绪切片</h3>
+          <div class="panel-inner">
+            <div id="forecastChart" class="signal-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-grid">
+        <div>
+          <h3 class="section-title">情绪观察</h3>
+          <div id="emotionCards" class="driver-grid"></div>
+        </div>
+
+        <div>
+          <h3 class="section-title">因子快照</h3>
+          <div id="factorSnapshot" class="factor-grid"></div>
+        </div>
+
+        <div class="trend-card">
+          <h3 class="section-title">股票走势</h3>
+          <div style="color:var(--muted);font-size:14px;margin:-4px 0 12px;">柱状图显示实际股价，折线显示变化方向。</div>
+          <div class="chart-box">
+            <svg id="trendChart" viewBox="0 0 760 260" preserveAspectRatio="none"></svg>
+          </div>
+          <div id="chartNotes" class="chart-note"></div>
+        </div>
+      </section>
+
+      <section style="margin-top:26px;">
+        <h3 class="section-title">实时状态</h3>
+        <div class="hero-tip" style="max-width:none;">
+          <b id="liveStatusTitle">尚未抓取实时数据</b>
+          <div id="liveStatusText" style="margin-top:8px;">实时更新新闻流、情绪变化与明日方向信号。</div>
+          <div id="liveUpdatedAt" style="margin-top:8px;color:var(--muted);font-size:13px;">等待连接本地数据服务</div>
+        </div>
+      </section>
+
+      <section style="margin-top:26px;">
+        <h3 class="section-title">模型说明</h3>
+        <div id="modelNotes" class="driver-grid"></div>
+      </section>
+
+      <section style="margin-top:26px;">
+        <h3 class="section-title">关注股票池</h3>
+        <div id="watchGrid" class="watch-grid"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const stocks = {
+      "泡泡玛特": { code: "09992.HK", subtitle: "潮玩与新消费情绪敏感度高。", alias: ["泡泡玛特", "09992", "09992.HK", "pop mart"] },
+      "安踏体育": { code: "02020.HK", subtitle: "运动消费龙头，品牌舆情反馈明显。", alias: ["安踏体育", "02020", "02020.HK", "anta"] },
+      "李宁": { code: "02331.HK", subtitle: "国潮与运动消费交叉标的。", alias: ["李宁", "02331", "02331.HK", "li ning"] }
+    };
+
+    const refs = {
+      landingScreen: document.getElementById("landingScreen"),
+      workspaceScreen: document.getElementById("workspaceScreen"),
+      launchButton: document.getElementById("launchButton"),
+      searchInput: document.getElementById("searchInput"),
+      searchButton: document.getElementById("searchButton"),
+      stockTabs: document.getElementById("stockTabs"),
+      heroName: document.getElementById("heroName"),
+      heroProb: document.getElementById("heroProb"),
+      heroMeter: document.getElementById("heroMeter"),
+      heroRange: document.getElementById("heroRange"),
+      heroRisk: document.getElementById("heroRisk"),
+      heroScore: document.getElementById("heroScore"),
+      predictionWindow: document.getElementById("predictionWindow"),
+      emotionCards: document.getElementById("emotionCards"),
+      factorSnapshot: document.getElementById("factorSnapshot"),
+      liveUpdatedAt: document.getElementById("liveUpdatedAt"),
+      liveStatusTitle: document.getElementById("liveStatusTitle"),
+      liveStatusText: document.getElementById("liveStatusText"),
+      liveNewsList: document.getElementById("liveNewsList"),
+      modelNotes: document.getElementById("modelNotes"),
+      watchGrid: document.getElementById("watchGrid"),
+      forecastChart: document.getElementById("forecastChart"),
+      trendChart: document.getElementById("trendChart"),
+      chartNotes: document.getElementById("chartNotes"),
+    };
+
+    let currentStock = "泡泡玛特";
+    let currentRequestId = 0;
+
+    const escapeHtml = (text) => String(text ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+    function betterSentimentScoreView(score) {
+      const value = Number(score || 0);
+      if (value >= 85) return { label: "偏热", color: "#f0a640" };
+      if (value >= 70) return { label: "微热", color: "#d68a2f" };
+      if (value >= 55) return { label: "平稳", color: "#6382bf" };
+      if (value >= 40) return { label: "偏冷", color: "#7a7a7a" };
+      return { label: "低迷", color: "#5b5b5b" };
+    }
+
+    function betterSentimentTrendView(value) {
+      const v = Number(value || 0);
+      if (v >= 0.25) return { label: "明显升温", color: "#d68a2f" };
+      if (v >= 0.08) return { label: "微升", color: "#d68a2f" };
+      if (v <= -0.25) return { label: "明显回落", color: "#cc4c47" };
+      if (v <= -0.08) return { label: "微降", color: "#cc4c47" };
+      return { label: "波动很小", color: "#5d78af" };
+    }
+
+    function betterSentimentMeanView(value) {
+      const v = Number(value || 0);
+      if (v >= 0.3) return { label: "明显偏正面", color: "#2c9c54" };
+      if (v >= 0.1) return { label: "偏正面", color: "#2c9c54" };
+      if (v <= -0.2) return { label: "偏负面", color: "#cc4c47" };
+      if (v <= -0.05) return { label: "略偏谨慎", color: "#cc4c47" };
+      return { label: "中性", color: "#5d78af" };
+    }
+
+    function betterPositiveRatioView(value) {
+      const v = Number(value || 0);
+      if (v >= 0.7) return { label: "乐观占优", color: "#2c9c54" };
+      if (v >= 0.55) return { label: "略偏乐观", color: "#d68a2f" };
+      if (v <= 0.35) return { label: "谨慎占优", color: "#cc4c47" };
+      return { label: "多空拉锯", color: "#5d78af" };
+    }
+
+    function betterModelQualityView(value) {
+      const v = Number(value || 0);
+      if (v >= 0.8) return { label: "优", note: "历史分类效果较稳定。", color: "#2c9c54" };
+      if (v >= 0.5) return { label: "良", note: "更适合作为辅助判断参考。", color: "#d68a2f" };
+      return { label: "待优化", note: "当前更适合作为趋势提示。", color: "#cc4c47" };
+    }
+
+    function formatSignedPercent(value, digits = 1) {
+      const num = Number(value || 0) * 100;
+      const abs = Math.abs(num).toFixed(digits);
+      if (num > 0) return `升 ${abs}%`;
+      if (num < 0) return `降 ${abs}%`;
+      return `持平 0.${"0".repeat(Math.max(digits - 1, 0))}%`;
+    }
+
+    function formatRatioPercent(value, digits = 1) {
+      return `${(Number(value || 0) * 100).toFixed(digits)}%`;
+    }
+
+    function formatDirectionProbability(probability) {
+      const upProbability = Math.max(0, Math.min(100, Number(probability || 0)));
+      const isUp = upProbability >= 50;
+      return {
+        isUp,
+        label: isUp ? "上涨" : "下跌",
+        arrow: isUp ? "↑" : "↓",
+        colorClass: isUp ? "good" : "bad",
+        percent: Math.round(isUp ? upProbability : 100 - upProbability)
+      };
+    }
+
+    function renderStockTabs(activeName) {
+      refs.stockTabs.innerHTML = Object.entries(stocks).map(([name, stock]) => `
+        <button class="stock-tab ${name === activeName ? "active" : ""}" data-stock="${name}">
+          <b>${name}</b>
+          <span>${stock.code}</span>
+          <span>${stock.subtitle}</span>
+        </button>
+      `).join("");
+      refs.stockTabs.querySelectorAll(".stock-tab").forEach((button) => {
+        button.onclick = () => selectStock(button.dataset.stock);
+      });
+    }
+
+    function renderWatchGrid() {
+      refs.watchGrid.innerHTML = Object.entries(stocks).map(([name, stock]) => `
+        <div class="watch">
+          <div><b>${name} ${stock.code}</b><p>${stock.subtitle}</p></div>
+          <button class="watch-btn" data-stock="${name}">查看预测</button>
+        </div>
+      `).join("");
+      refs.watchGrid.querySelectorAll(".watch-btn").forEach((button) => {
+        button.onclick = () => selectStock(button.dataset.stock);
+      });
+    }
+
+    function renderFeed(target, items, emptyText) {
+      if (!items.length) {
+        target.innerHTML = `<div class="feed-card"><b>暂无数据</b><div class="feed-meta"><span>${escapeHtml(emptyText)}</span><span>--</span></div></div>`;
+        return;
+      }
+      target.innerHTML = items.map((item) => `
+        <div class="feed-card">
+          <b>${escapeHtml(item.title)}</b>
+          <div class="feed-meta">
+            <span>${escapeHtml(item.source || "未知来源")}</span>
+            <span>${escapeHtml(item.time || "未知时间")}</span>
+          </div>
+          ${item.url ? `<a href="${item.url}" target="_blank" rel="noreferrer">查看原文</a>` : ""}
+        </div>
+      `).join("");
+    }
+
+    function renderProgressCard(stage, progress) {
+      const safeProgress = Math.max(6, Math.min(100, Number(progress || 0)));
+      refs.predictionWindow.innerHTML = `
+        <div class="driver">
+          <div style="width:100%">
+            <b>${escapeHtml(stage || "正在训练涨跌模型")}</b>
+            <p>系统会先抓取情绪信息，再整理历史行情并训练明日涨跌分类模型。</p>
+            <div style="margin-top:14px;height:10px;background:rgba(255,255,255,.10);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${safeProgress}%;background:linear-gradient(90deg,#f1a24b,#f6c564);border-radius:999px;"></div>
+            </div>
+            <p style="margin-top:10px;">当前进度约 ${safeProgress}%</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPredictionWindow({ status = "idle", result = null, error = "", progress = 0, stage = "" } = {}) {
+      if (status === "running") {
+        renderProgressCard(stage || "正在训练涨跌模型", progress);
+        return;
+      }
+      if (status === "failed") {
+        refs.predictionWindow.innerHTML = `
+          <div class="driver">
+            <div>
+              <b>预测失败</b>
+              <p>${escapeHtml(error || "后台任务失败，请重试。")}</p>
+            </div>
+            <span class="tag bad">脳</span>
+          </div>
+        `;
+        return;
+      }
+      if (status === "completed" && result) {
+        const quality = betterModelQualityView((result.backtest || {}).accuracy);
+        const directionView = formatDirectionProbability(result.metrics ? result.metrics.probability : 50);
+        refs.predictionWindow.innerHTML = `
+          <div class="driver">
+            <div>
+              <b>${escapeHtml(result.prediction_label || "明日方向")}</b>
+              <p>${escapeHtml(result.prediction_reason || "")} ${result.history_info?.snapshot ? "" : `预计${escapeHtml(directionView.label)}幅度约 ${result.expected_move_pct != null ? Number(result.expected_move_pct).toFixed(2) : "--"}%。`}</p>
+              <p>模型效果: <span style="font-weight:700;color:${quality.color};">${quality.label}</span>。</p>
+            </div>
+            <span class="tag ${directionView.colorClass}">${directionView.arrow} ${directionView.label}</span>
+          </div>
+        `;
+        return;
+      }
+      refs.predictionWindow.innerHTML = `
+        <div class="driver">
+          <div>
+            <b>等待预测任务</b>
+            <p>选择股票后，这里会显示当前进度与明日方向结果。</p>
+          </div>
+          <span class="tag navy">—</span>
+        </div>
+      `;
+    }
+
+    function renderSentimentSummary(data) {
+      const features = data.feature_values || {};
+      const scoreView = betterSentimentScoreView(data.metrics.score);
+      const meanView = betterSentimentMeanView(features.avg_sentiment);
+      const trendView = betterSentimentTrendView(features.sentiment_trend);
+      const ratioView = betterPositiveRatioView(features.positive_ratio);
+      refs.forecastChart.innerHTML = `
+        <div class="signal-mini">
+          <small>情绪分</small>
+          <strong style="color:${scoreView.color};">☀ ${scoreView.label} · ${Number(data.metrics.score || 0)}</strong>
+          <p>综合新闻热度、方向和变化，越高代表市场越热。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪均值</small>
+          <strong style="color:${meanView.color};">🙂 ${meanView.label} · ${formatRatioPercent(features.avg_sentiment, 1)}</strong>
+          <p>把新闻语气换算成更直观的百分比，越高代表整体越偏积极。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪变化</small>
+          <strong style="color:${trendView.color};">${trendArrow(features.sentiment_trend)} ${trendView.label} · ${formatSignedPercent(features.sentiment_trend, 1)}</strong>
+          <p>看最近一轮情绪是在升温还是回落。</p>
+        </div>
+        <div class="signal-mini">
+          <small>正向占比</small>
+          <strong style="color:${ratioView.color};">● ${ratioView.label} · ${formatRatioPercent(features.positive_ratio, 0)}</strong>
+          <p>看乐观新闻在全部新闻里占多少。</p>
+        </div>
+      `;
+    }
+
+    function renderSentimentPlaceholder() {
+      refs.forecastChart.innerHTML = `
+        <div class="signal-mini">
+          <small>情绪分</small>
+          <strong style="color:#f0a640;">☀ 偏热 · 81</strong>
+          <p>综合新闻热度、方向和变化后的结果。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪均值</small>
+          <strong style="color:#2c9c54;">🙂 明显偏正面 · 80.0%</strong>
+          <p>看新闻语气整体偏积极还是偏谨慎。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪变化</small>
+          <strong style="color:#5d78af;">→ 波动很小 · 持平 0.0%</strong>
+          <p>看最近一轮情绪是在升温还是回落。</p>
+        </div>
+        <div class="signal-mini">
+          <small>正向占比</small>
+          <strong style="color:#2c9c54;">● 乐观占优 · 80%</strong>
+          <p>看乐观新闻在全部新闻里占多少。</p>
+        </div>
+      `;
+    }
+
+    function renderInsightCards(target, items) {
+      target.innerHTML = items.map((item) => `
+        <div class="emotion-card">
+          <div>
+            <b>${escapeHtml(item.title)}</b>
+            <p>${escapeHtml(item.text)}</p>
+          </div>
+          <div class="emotion-badge">${escapeHtml(item.badge || "")}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderFactorCards(items) {
+      refs.factorSnapshot.innerHTML = items.map((item) => `
+        <div class="factor-card">
+          <div>
+            <b>${escapeHtml(item.name)}</b>
+            <p>${escapeHtml(item.value)}</p>
+          </div>
+          <div class="factor-badge">factor</div>
+        </div>
+      `).join("");
+    }
+
+    function trendArrow(value) {
+      const num = Number(value || 0);
+      if (num > 0) return "↗";
+      if (num < 0) return "↘";
+      return "→";
+    }
+
+    function renderSentimentSummary(data) {
+      const features = data.feature_values || {};
+      const scoreView = betterSentimentScoreView(data.metrics.score);
+      const meanView = betterSentimentMeanView(features.avg_sentiment);
+      const trendView = betterSentimentTrendView(features.sentiment_trend);
+      const ratioView = betterPositiveRatioView(features.positive_ratio);
+      refs.forecastChart.innerHTML = `
+        <div class="signal-mini">
+          <small>情绪分</small>
+          <strong style="color:${scoreView.color};">☀ ${scoreView.label} · ${Number(data.metrics.score || 0)}</strong>
+          <p>把热度、方向和变化压成一个总分，用来看当下市场温度。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪均值</small>
+          <strong style="color:${meanView.color};">🙂 ${meanView.label} · ${formatRatioPercent(features.avg_sentiment, 1)}</strong>
+          <p>看整体语气偏向，反映新闻平均态度是更积极还是更谨慎。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪变化</small>
+          <strong style="color:${trendView.color};">${trendArrow(features.sentiment_trend)} ${trendView.label} · ${formatSignedPercent(features.sentiment_trend, 1)}</strong>
+          <p>看最近一轮情绪是在继续升温，还是正在回落。</p>
+        </div>
+        <div class="signal-mini">
+          <small>正向占比</small>
+          <strong style="color:${ratioView.color};">● ${ratioView.label} · ${formatRatioPercent(features.positive_ratio, 0)}</strong>
+          <p>看偏正面新闻在全部新闻里占多少，反映乐观情绪浓度。</p>
+        </div>
+      `;
+    }
+
+    function renderSentimentPlaceholder() {
+      refs.forecastChart.innerHTML = `
+        <div class="signal-mini">
+          <small>情绪分</small>
+          <strong style="color:#f0a640;">☀ 偏热 · 81</strong>
+          <p>把热度、方向和变化压成一个总分，用来看当下市场温度。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪均值</small>
+          <strong style="color:#39d67b;">🙂 明显偏正面 · 80.0%</strong>
+          <p>看整体语气偏向，反映新闻平均态度是更积极还是更谨慎。</p>
+        </div>
+        <div class="signal-mini">
+          <small>情绪变化</small>
+          <strong style="color:#7f95d1;">→ 波动很小 · 持平 0.0%</strong>
+          <p>看最近一轮情绪是在继续升温，还是正在回落。</p>
+        </div>
+        <div class="signal-mini">
+          <small>正向占比</small>
+          <strong style="color:#39d67b;">● 乐观占优 · 80%</strong>
+          <p>看偏正面新闻在全部新闻里占多少，反映乐观情绪浓度。</p>
+        </div>
+      `;
+    }
+
+    function renderModelNotes(data) {
+      const features = data.feature_values || {};
+      const meanView = betterSentimentMeanView(features.avg_sentiment);
+      const trendView = betterSentimentTrendView(features.sentiment_trend);
+      const items = [
+        { title: "情绪口径", summary: `当前新闻语气 ${meanView.label}（${formatRatioPercent(features.avg_sentiment, 1)}），短期节奏 ${trendView.label}（${formatSignedPercent(features.sentiment_trend, 1)}）。` },
+        { title: "模型口径", summary: `${data.model_name || "分类模型"} 先用历史价格、指数与汇率训练明日涨跌分类器，再叠加实时新闻情绪做在线修正。` }
+      ];
+      refs.modelNotes.innerHTML = items.map((item) => `
+        <div class="emotion-card">
+          <div>
+            <b>${escapeHtml(item.title)}</b>
+            <p>${escapeHtml(item.summary)}</p>
+          </div>
+          <div class="emotion-badge">note</div>
+        </div>
+      `).join("");
+    }
+
+    function renderEmptyDashboard() {
+      renderSentimentPlaceholder();
+      renderTrendChart([], 0);
+      renderPredictionWindow({ status: "idle" });
+      renderFeed(refs.liveNewsList, [], "新闻到达后会在这里实时更新。");
+    }
+
+    function applyResult(data) {
+      const scoreView = betterSentimentScoreView(data.metrics.score);
+      const trendView = betterSentimentTrendView(data.feature_values?.sentiment_trend);
+      const ratioView = betterPositiveRatioView(data.feature_values?.positive_ratio);
+      refs.heroName.textContent = `${data.stock.name} ${data.stock.code}`;
+      refs.heroProb.textContent = `${scoreView.label} · ${Number(data.metrics.score || 0)}`;
+      refs.heroProb.style.color = scoreView.color;
+      refs.heroMeter.style.width = `${Math.min(100, data.metrics.score)}%`;
+      refs.heroRange.textContent = `${trendView.label} · ${formatSignedPercent(data.feature_values?.sentiment_trend, 1)}`;
+      refs.heroRisk.textContent = data.metrics.risk;
+      refs.heroScore.textContent = data.metrics.stage;
+      renderSentimentSummary(data);
+      renderInsightCards(refs.emotionCards, data.emotion_cards || []);
+      renderFactorCards(data.factor_snapshot || []);
+      renderFeed(refs.liveNewsList, data.news || [], "当前未抓到可用新闻。");
+      renderModelNotes(data);
+      renderTrendChart(data.bars || data.metrics.bars || [], data.current_price || data.metrics.current_price || 0);
+      refs.liveUpdatedAt.textContent = `最近更新：${data.updated_at}`;
+      refs.liveStatusTitle.textContent = data.history_info?.snapshot
+        ? `历史行情快照演示：${data.stock.name}（截至 ${data.history_info.as_of}）`
+        : `已连接在线行情：${data.stock.name}`;
+      const statusText = data.fetch_errors && data.fetch_errors.length
+        ? `${data.metrics.subtitle} 当前有部分数据源不可用：${data.fetch_errors.slice(0, 2).join("；")}`
+        : data.metrics.subtitle;
+      refs.liveStatusText.textContent = (data.history_info?.proxy_factors || []).length
+        ? `${statusText} 部分历史因子使用代理值：${data.history_info.proxy_factors.join("、")}。`
+        : statusText;
+    }
+
+    function applyPreview(data) {
+      const scoreView = betterSentimentScoreView(data.metrics.score);
+      const trendView = betterSentimentTrendView(data.feature_values?.sentiment_trend);
+      refs.heroName.textContent = `${data.stock.name} ${data.stock.code}`;
+      refs.heroProb.textContent = `${scoreView.label} · ${Number(data.metrics.score || 0)}`;
+      refs.heroProb.style.color = scoreView.color;
+      refs.heroMeter.style.width = `${Math.min(100, data.metrics.score)}%`;
+      refs.heroRange.textContent = `${trendView.label} · ${formatSignedPercent(data.feature_values?.sentiment_trend, 1)}`;
+      refs.heroRisk.textContent = data.metrics.risk;
+      refs.heroScore.textContent = data.metrics.stage;
+      renderSentimentSummary(data);
+      renderInsightCards(refs.emotionCards, data.emotion_cards || []);
+      renderFactorCards(data.factor_snapshot || []);
+      renderFeed(refs.liveNewsList, data.news || [], "当前未抓到可用新闻。");
+      renderModelNotes(data);
+      refs.liveUpdatedAt.textContent = `最近更新：${data.updated_at}`;
+      refs.liveStatusTitle.textContent = `已完成情绪打分：${data.stock.name}`;
+      refs.liveStatusText.textContent = "情绪分已先行展示，预测窗口会继续完成明日方向判断。";
+    }
+
+    async function loadLiveData(name) {
+      if (name !== "泡泡玛特") {
+        refs.heroName.textContent = `${name} · 暂无保存记录`;
+        refs.heroProb.textContent = "暂无记录";
+        refs.heroMeter.style.width = "0%";
+        refs.heroRange.textContent = "—";
+        refs.heroRisk.textContent = "—";
+        refs.heroScore.textContent = "—";
+        refs.forecastChart.replaceChildren();
+        refs.emotionCards.replaceChildren();
+        refs.factorSnapshot.replaceChildren();
+        refs.trendChart.replaceChildren();
+        refs.chartNotes.replaceChildren();
+        refs.modelNotes.replaceChildren();
+        refs.predictionWindow.textContent = "该股票暂无保存的预测记录；公开演示不会运行模型。";
+        refs.liveStatusTitle.textContent = "公开演示仅保存泡泡玛特预测";
+        refs.liveStatusText.textContent = "请选择泡泡玛特，查看已经运行并保存的预测。";
+        refs.liveUpdatedAt.textContent = "没有启动模型训练";
+        renderFeed(refs.liveNewsList, [], "该股票暂无保存的新闻记录。");
+        return;
+      }
+      refs.liveStatusTitle.textContent = "正在读取泡泡玛特演示记录";
+      renderPredictionWindow({ status: "running", stage: "读取已保存的预测", progress: 70 });
+      try {
+        const response = await fetch("./emotion-demo-result.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const result = await response.json();
+        applyResult(result);
+        renderPredictionWindow({ status: "completed", result });
+        refs.liveStatusTitle.textContent = `已保存的泡泡玛特预测 · ${result.updated_at}`;
+        refs.liveStatusText.textContent = `正在回放已运行的预测，不会重新训练模型。${result.metrics.subtitle}`;
+      } catch (error) {
+        renderPredictionWindow({ status: "failed", error: String(error) });
+        refs.liveStatusTitle.textContent = "演示记录读取失败";
+        refs.liveStatusText.textContent = String(error);
+      }
+    }
+
+    function selectStock(name) {
+      if (!stocks[name] || name === currentStock) return;
+      currentStock = name;
+      refs.searchInput.value = name;
+      renderStockTabs(name);
+      loadLiveData(name);
+    }
+
+    function findStockByInput() {
+      const query = refs.searchInput.value.trim().toLowerCase();
+      if (!query) return;
+      const matched = Object.entries(stocks).find(([name, stock]) =>
+        name.toLowerCase() === query || stock.alias.some((alias) => alias.toLowerCase() === query)
+      );
+      if (matched) {
+        currentStock = matched[0];
+        renderStockTabs(currentStock);
+        loadLiveData(currentStock);
+        return;
+      }
+      currentStock = refs.searchInput.value.trim();
+      renderStockTabs(Object.keys(stocks).find((name) => name === currentStock) || Object.keys(stocks)[0]);
+      loadLiveData(currentStock);
+    }
+
+    function hydrateStaticChrome() {
+      const landingTitle = refs.landingScreen.querySelector(".landing-title");
+      const landingSubtitle = refs.landingScreen.querySelector(".landing-subtitle");
+      const workspaceTitle = refs.workspaceScreen.querySelector(".workspace-header h1");
+      const heroHeadline = refs.workspaceScreen.querySelector(".hero-copy h2");
+      const heroTip = refs.workspaceScreen.querySelector(".hero-tip");
+      const trendCard = refs.trendChart.closest(".trend-card");
+      const trendTitle = trendCard.querySelector(".section-title");
+      const trendHint = trendCard.querySelector("div[style*='margin:-4px']");
+      const predictionTitle = refs.predictionWindow.parentElement.querySelector(".rail-title");
+      const newsWindow = refs.liveNewsList.closest(".news-window");
+      const newsTitle = newsWindow.querySelector(".rail-title");
+      const rightRail = refs.predictionWindow.closest(".right-rail");
+
+      if (landingTitle) landingTitle.textContent = "情绪雷达 Alpha";
+      if (landingSubtitle) landingSubtitle.textContent = "观情见势，洞见先机";
+      if (workspaceTitle) workspaceTitle.textContent = "情绪雷达 Alpha";
+      if (heroHeadline) heroHeadline.textContent = "观情见势，洞见先机。";
+      if (heroTip) heroTip.textContent = "支持自由输入港股代码或名称。和泡泡玛特一样更易受市场情绪影响的股票，通常更适合这套判断逻辑。";
+      if (trendTitle) trendTitle.textContent = "股票走势";
+      if (trendHint) trendHint.textContent = "柱状图显示股价，折线显示变化方向。";
+      if (predictionTitle) predictionTitle.textContent = "预测窗口";
+      if (newsTitle) newsTitle.textContent = "新闻流";
+      if (rightRail && newsWindow && rightRail.firstElementChild !== newsWindow) {
+        rightRail.insertBefore(newsWindow, rightRail.firstElementChild);
+      }
+    }
+
+    function formatTrendDateLabel(raw, fallbackIndex, isPrediction = false) {
+      if (raw) {
+        const parsed = new Date(raw);
+        if (!Number.isNaN(parsed.getTime())) {
+          return `${parsed.getMonth() + 1}/${parsed.getDate()}`;
+        }
+      }
+      const base = new Date();
+      const dates = [];
+      const cursor = new Date(base);
+      while (dates.length < 5) {
+        const day = cursor.getDay();
+        if (day !== 0 && day !== 6) dates.unshift(new Date(cursor));
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      if (isPrediction) {
+        const last = dates[dates.length - 1];
+        const next = new Date(last);
+        next.setDate(next.getDate() + (next.getDay() === 5 ? 3 : 1));
+        return `${next.getMonth() + 1}/${next.getDate()}`;
+      }
+      const item = dates[Math.max(0, dates.length - 4 + fallbackIndex)];
+      return `${item.getMonth() + 1}/${item.getDate()}`;
+    }
+
+    renderTrendChart = function(items, currentPrice) {
+      const left = 54;
+      const top = 16;
+      const usableHeight = 178;
+      const step = 136;
+      const barWidth = 52;
+
+      if (!items.length) {
+        const historyPrices = [152.4, 158.9, 156.8, 149.6];
+        const labels = historyPrices.map((_, index) => formatTrendDateLabel("", index, false));
+        const minPrice = Math.min(...historyPrices) * 0.985;
+        const maxPrice = Math.max(...historyPrices) * 1.015;
+        const priceToY = (price) => top + (maxPrice - price) / (maxPrice - minPrice || 1) * usableHeight;
+        const baseLine = top + usableHeight;
+        const bars = historyPrices.map((price, index) => {
+          const x = left + index * step;
+          const y = priceToY(price);
+          const h = Math.max(baseLine - y, 14);
+          return `<rect x="${x}" y="${y}" width="${barWidth}" height="${h}" rx="12" fill="rgba(255,255,255,.92)" stroke="rgba(255,255,255,.22)" stroke-width="2"></rect>`;
+        }).join("");
+        const points = historyPrices.map((price, index) => `${left + index * step + barWidth / 2},${priceToY(price) - 12}`).join(" ");
+        const pendingX = left + 4 * step;
+
+        refs.trendChart.innerHTML = `
+          ${bars}
+          <rect x="${pendingX}" y="${top + 36}" width="${barWidth}" height="${usableHeight - 28}" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-dasharray="8 8"></rect>
+          <polyline points="${points}" fill="none" stroke="#f4c96f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>
+        `;
+        refs.chartNotes.innerHTML = labels.map((label, index) => `
+          <div class="chart-note-item">
+            <b>${label}</b>
+            <span>HK$ ${historyPrices[index].toFixed(2)}</span>
+            <span>—</span>
+          </div>
+        `).join("") + `
+          <div class="chart-note-item pending">
+            <b>${formatTrendDateLabel("", 4, true)}</b>
+            <span>预测生成中</span>
+            <span>—</span>
+          </div>
+        `;
+        return;
+      }
+
+      const entries = items.slice(0, 5).map((item, index) => {
+        const isPrediction = !!item.is_prediction || index === items.slice(0, 5).length - 1;
+        return {
+          label: formatTrendDateLabel(item.date || item.label || "", index, isPrediction),
+          price: Number(item.price || currentPrice || 0),
+          returnPct: item.return_pct != null ? Number(item.return_pct) : null,
+          isPrediction
+        };
+      });
+      const prices = entries.map((item) => item.price).filter((value) => Number.isFinite(value) && value > 0);
+      const minPrice = Math.min(...prices) * 0.985;
+      const maxPrice = Math.max(...prices) * 1.015;
+      const priceToY = (price) => top + (maxPrice - price) / (maxPrice - minPrice || 1) * usableHeight;
+      const baseLine = top + usableHeight;
+
+      const bars = entries.map((item, index) => {
+        const x = left + index * step;
+        const y = priceToY(item.price);
+        const h = Math.max(baseLine - y, 12);
+        return `
+          <rect x="${x}" y="${y}" width="${barWidth}" height="${h}" rx="12"
+            fill="${item.isPrediction ? "rgba(122,92,255,.42)" : "rgba(255,255,255,.92)"}"
+            stroke="${item.isPrediction ? "rgba(122,92,255,.95)" : "rgba(255,255,255,.24)"}"
+            stroke-width="2"></rect>
+        `;
+      }).join("");
+
+      const points = entries.map((item, index) => `${left + index * step + barWidth / 2},${priceToY(item.price) - 14}`).join(" ");
+
+      refs.trendChart.innerHTML = `
+        ${bars}
+        <polyline points="${points}" fill="none" stroke="#f4c96f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>
+      `;
+
+      refs.chartNotes.innerHTML = entries.map((item) => `
+        <div class="chart-note-item${item.isPrediction ? " pending" : ""}">
+          <b>${item.label}</b>
+          <span>HK$ ${item.price.toFixed(2)}</span>
+          <span>${item.returnPct == null ? "—" : `${item.returnPct > 0 ? "+" : ""}${item.returnPct.toFixed(2)}%`}</span>
+        </div>
+      `).join("");
+    };
+
+    function openWorkspace() {
+      refs.landingScreen.classList.add("hidden");
+      refs.workspaceScreen.classList.remove("hidden");
+      refs.searchInput.value = currentStock;
+      renderStockTabs(currentStock);
+      renderWatchGrid();
+      renderEmptyDashboard();
+      loadLiveData(currentStock);
+    }
+
+    refs.launchButton.onclick = openWorkspace;
+    refs.searchButton.onclick = findStockByInput;
+    refs.searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") findStockByInput();
+    });
+    hydrateStaticChrome();
+  </script>
+</body>
+</html>

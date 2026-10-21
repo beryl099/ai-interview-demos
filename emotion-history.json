@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "last_checked_at_hkt": null,
+  "records": [
+    {
+      "id": "09992-hk-2026-10-20",
+      "stock_name": "泡泡玛特",
+      "stock_code": "09992.HK",
+      "forecast_date": "2026-10-20",
+      "target_date": "2026-10-21",
+      "recorded_at_hkt": "2026-10-20 17:13:56+08:00",
+      "mode": "snapshot_demo",
+      "base_close_hkd": 136.4,
+      "predicted_close_hkd": 137.89,
+      "emotion_label": "升温",
+      "emotion_score": 79,
+      "up_probability_pct": 63,
+      "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
+      "news": [
+        {
+          "title": "高层召开发布会，多措并举扩内需！消费ETF汇添富(159928)昨日巨幅净流入超2.5亿元！泡泡玛特放量跌逾3%！假日服务消费等支撑9月社零增长",
+          "url": "http://stock.eastmoney.com/a/202610203901320785.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "泡泡玛特跌超5%",
+          "url": "http://finance.eastmoney.com/a/202610203901116660.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "泡泡玛特前设计师品牌“毛草乐园”已完成种子轮融资，并启动新一轮融资",
+          "url": "http://finance.eastmoney.com/a/202610193899748961.html",
+          "source": "东方财富实时"
+        }
+      ],
+      "actual_date": null,
+      "actual_close_hkd": null,
+      "error_hkd": null,
+      "absolute_error_pct": null,
+      "actual_source": null,
+      "price_source": "内置历史行情快照（截至2026-10-20）"
+    }
+  ]
+}
