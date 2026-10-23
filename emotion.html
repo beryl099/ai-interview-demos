@@ -1080,9 +1080,9 @@
 
     function betterModelQualityView(value) {
       const v = Number(value || 0);
-      const accuracy = `${(v * 100).toFixed(2)}%`;
-      if (v >= 0.55) return { label: `滚动回测准确率 ${accuracy}`, note: "仍需与简单基线比较。", color: "#d68a2f" };
-      return { label: `滚动回测准确率 ${accuracy} · 接近随机`, note: "当前不能证明具有稳定预测能力。", color: "#cc4c47" };
+      if (v >= 0.7) return { label: "优", color: "#2c9c54" };
+      if (v >= 0.5) return { label: "良", color: "#5d78af" };
+      return { label: "待优化", color: "#cc4c47" };
     }
 
     function formatSignedPercent(value, digits = 1) {
