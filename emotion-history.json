@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_checked_at_hkt": "2026-10-23T16:46:10+08:00",
+  "last_checked_at_hkt": "2026-10-23T22:26:23+08:00",
   "records": [
     {
       "id": "09992-hk-2026-10-23",
@@ -9,7 +9,7 @@
       "forecast_date": "2026-10-23",
       "target_date": "2026-10-26",
       "recorded_at_hkt": "2026-10-23T16:46:10+08:00",
-      "mode": "live_close",
+      "mode": "curated_news",
       "base_close_hkd": 131.7,
       "predicted_close_hkd": 131.42,
       "emotion_label": "分化",
@@ -39,6 +39,120 @@
       "absolute_error_pct": null,
       "actual_source": null,
       "price_source": "腾讯财经在线行情"
+    },
+    {
+      "id": "09992-hk-2026-10-23-auto",
+      "stock_name": "泡泡玛特",
+      "stock_code": "09992.HK",
+      "forecast_date": "2026-10-23",
+      "target_date": "2026-10-26",
+      "recorded_at_hkt": "2026-10-23T22:26:23+08:00",
+      "mode": "live_close_auto",
+      "base_close_hkd": 131.7,
+      "predicted_close_hkd": 131.71,
+      "emotion_label": "分化",
+      "emotion_score": 56,
+      "up_probability_pct": 50,
+      "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
+      "news": [
+        {
+          "title": "把成年人买玩具做成大生意，泡泡玛特王宁：全世界最底层的需求",
+          "url": "http://finance.eastmoney.com/a/202610223904613944.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "国际油价直线跳水；段永平称会继续买入泡泡玛特丨港股早报",
+          "url": "http://finance.eastmoney.com/a/202610223903421926.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "泡泡玛特五连跌！段永平：还会再买一些",
+          "url": "http://finance.eastmoney.com/a/202610213902734187.html",
+          "source": "东方财富实时"
+        }
+      ],
+      "actual_date": null,
+      "actual_close_hkd": null,
+      "error_hkd": null,
+      "absolute_error_pct": null,
+      "actual_source": null,
+      "price_source": "东方财富在线行情"
+    },
+    {
+      "id": "09992-hk-2026-10-22",
+      "stock_name": "泡泡玛特",
+      "stock_code": "09992.HK",
+      "forecast_date": "2026-10-22",
+      "target_date": "2026-10-23",
+      "recorded_at_hkt": "2026-10-22T22:39:57+08:00",
+      "mode": "live_close",
+      "base_close_hkd": 128.5,
+      "predicted_close_hkd": 128.72,
+      "emotion_label": "分化",
+      "emotion_score": 59,
+      "up_probability_pct": 52,
+      "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
+      "news": [
+        {
+          "title": "国际油价直线跳水；段永平称会继续买入泡泡玛特丨港股早报",
+          "url": "http://finance.eastmoney.com/a/202610223903421926.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "泡泡玛特五连跌！段永平：还会再买一些",
+          "url": "http://finance.eastmoney.com/a/202610213902734187.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "投资泡泡玛特或浮亏20亿港元 段永平最新回应",
+          "url": "http://finance.eastmoney.com/a/202610213903003192.html",
+          "source": "东方财富实时"
+        }
+      ],
+      "actual_date": "2026-10-23",
+      "actual_close_hkd": 131.7,
+      "error_hkd": -2.98,
+      "absolute_error_pct": 2.26,
+      "actual_source": "腾讯财经日线收盘价（未复权）",
+      "price_source": "东方财富在线行情"
+    },
+    {
+      "id": "09992-hk-2026-10-21",
+      "stock_name": "泡泡玛特",
+      "stock_code": "09992.HK",
+      "forecast_date": "2026-10-21",
+      "target_date": "2026-10-22",
+      "recorded_at_hkt": "2026-10-21T22:40:30+08:00",
+      "mode": "live_close",
+      "base_close_hkd": 129.8,
+      "predicted_close_hkd": 129.54,
+      "emotion_label": "分化",
+      "emotion_score": 52,
+      "up_probability_pct": 48,
+      "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
+      "news": [
+        {
+          "title": "段永平：还会再买一些泡泡玛特！股价已五连跌",
+          "url": "http://finance.eastmoney.com/a/202610213902914131.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "泡泡玛特增长承压、股价五连跌后，段永平仍有意加仓",
+          "url": "http://finance.eastmoney.com/a/202610213902870584.html",
+          "source": "东方财富实时"
+        },
+        {
+          "title": "跌破举牌价后段永平谈泡泡玛特：还会再买一些 对错过几年就知道了",
+          "url": "http://finance.eastmoney.com/a/202610213902870649.html",
+          "source": "东方财富实时"
+        }
+      ],
+      "actual_date": "2026-10-22",
+      "actual_close_hkd": 128.5,
+      "error_hkd": 1.04,
+      "absolute_error_pct": 0.81,
+      "actual_source": "腾讯财经日线收盘价（未复权）",
+      "price_source": "东方财富在线行情"
     },
     {
       "id": "09992-hk-2026-10-20",
