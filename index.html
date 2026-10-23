@@ -2,77 +2,44 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#091936">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1230">
   <meta name="description" content="Beryl 的 AI 项目作品集：情绪雷达与 AI 医疗竞对日报。">
   <title>Beryl · AI 项目作品集</title>
   <style>
-    :root { color-scheme:dark; font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif; color:#fffaf5; background:#091936; }
-    * { box-sizing:border-box; }
-    body { min-width:320px; margin:0; }
-    a { color:inherit; text-decoration:none; }
-    a:focus-visible { outline:3px solid #b6f1d7; outline-offset:4px; }
-    .cover { position:relative; isolation:isolate; min-height:100svh; display:flex; flex-direction:column; overflow:hidden; background:#091936 url("./assets/observatory-bg.png?v=1") center center/cover no-repeat; }
-    .cover::before { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; background:linear-gradient(180deg,#06132d20 0%,transparent 48%,#07112bab 100%); }
-    .wrap { width:min(1460px,calc(100% - 100px)); margin-inline:auto; }
-    header { display:flex; align-items:center; justify-content:space-between; padding-top:42px; }
-    .brand { display:inline-flex; align-items:center; gap:12px; font-size:23px; font-weight:750; letter-spacing:-.045em; text-shadow:0 2px 12px #06122a70; }
-    .brand-mark { display:grid; place-items:center; width:40px; height:40px; border-radius:10px; background:#b6f1d7; color:#10273b; font-weight:800; font-size:25px; text-shadow:none; }
-    .nav { font-size:12px; font-weight:650; letter-spacing:.2em; text-transform:uppercase; opacity:.85; transition:opacity .2s; }
-    .nav:hover { opacity:1; }
-    main { display:flex; flex:1; flex-direction:column; justify-content:flex-end; padding-top:64px; padding-bottom:50px; }
-    .projects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
-    .project { display:flex; align-items:center; gap:25px; min-height:152px; padding:26px 31px; border:1px solid #ffffff27; border-radius:22px; background:#121a35e8; box-shadow:0 20px 48px #06112952,inset 0 1px #ffffff16; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); transition:transform .25s,border-color .25s,background .25s,box-shadow .25s; }
-    .project:hover { transform:translateY(-5px); border-color:#ffc8a680; background:#182241f2; box-shadow:0 28px 60px #06112980,inset 0 1px #ffffff20; }
-    .project:active { transform:translateY(-1px); }
-    .project-icon { display:block; flex:none; width:88px; height:88px; object-fit:cover; border-radius:19px; box-shadow:0 10px 24px #060c2866; }
-    .project-copy { min-width:0; }
-    .project h2 { margin:0 0 9px; font-size:clamp(21px,2.1vw,29px); line-height:1.24; letter-spacing:-.025em; font-weight:700; }
-    .project p { margin:0; color:#e0e2edcc; font-size:14px; line-height:1.55; }
-    .project-action { display:grid; place-items:center; flex:none; margin-left:auto; width:50px; height:50px; border:1px solid #ffffff55; border-radius:50%; color:#fff; font-size:22px; line-height:1; transition:background .25s,transform .25s; }
-    .project:hover .project-action { background:#ffffff28; transform:translateX(3px); }
-    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-    @media(max-width:780px) {
-      .cover { min-height:100svh; background-position:90% center; }
-      .cover::before { background:linear-gradient(180deg,#07152a35 0%,#07152a1a 42%,#07112cef 100%); }
-      .wrap { width:calc(100% - 36px); }
-      header { padding-top:23px; }
-      .brand { font-size:19px; }
-      .brand-mark { width:34px; height:34px; font-size:21px; }
-      .nav { font-size:10px; letter-spacing:.1em; }
-      main { padding-top:160px; padding-bottom:22px; }
-      .projects { grid-template-columns:1fr; gap:12px; }
-      .project { gap:15px; min-height:104px; padding:16px; border-radius:16px; }
-      .project-icon { width:57px; height:57px; border-radius:13px; }
-      .project h2 { margin-bottom:5px; font-size:19px; }
-      .project p { font-size:12px; }
-      .project-action { width:37px; height:37px; font-size:18px; }
-    }
-    @media(max-width:390px) { .project p { max-width:24ch; } }
-    @media(prefers-reduced-motion:reduce) { .project,.project-action,.nav { transition:none; } }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-width:320px;min-height:100%;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#fff}
+    body{background:#0b1230}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible{outline:3px solid #b6f1d7;outline-offset:4px}
+    .cover{min-height:100svh;display:flex;align-items:center;position:relative;isolation:isolate;overflow:hidden;background:url("./assets/observatory-bg.png?v=1") center/cover no-repeat}
+    .cover::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,12,35,.66) 0%,rgba(7,12,35,.38) 37%,transparent 71%)}
+    .content{width:min(565px,calc(100% - 92px));margin-left:clamp(42px,6.4vw,100px);padding:42px 0}
+    h1{font-family:"Iowan Old Style","Songti SC","STSong",serif;font-size:34px;font-weight:300;letter-spacing:.045em;margin:0 0 11px;text-shadow:0 3px 20px #080b24aa}
+    .intro{margin:0 0 38px;color:#f6e9e3;letter-spacing:.11em;font-size:15px;font-weight:300;text-shadow:0 2px 12px #080b24aa}
+    .cards{display:grid;gap:16px}
+    .card{min-height:144px;display:flex;align-items:center;gap:21px;border:1px solid rgba(255,255,255,.28);border-radius:21px;padding:22px 24px;background:rgba(13,21,45,.84);box-shadow:0 20px 45px #080c2680;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:transform .2s,border-color .2s,background .2s}
+    .card:hover{transform:translateX(5px);border-color:#e6c4b7bb;background:rgba(21,29,56,.92)}
+    .card:active{transform:translateX(2px)}
+    img{width:88px;height:88px;flex:none;border-radius:17px;object-fit:cover;box-shadow:0 7px 22px #0007}
+    .copy{min-width:0}
+    h2{font-size:27px;line-height:1.25;letter-spacing:.01em;margin:0 0 7px;font-weight:650}
+    .desc{font-size:13px;color:#e9e8f0bb;line-height:1.5;margin:0}
+    .arrow{margin-left:auto;display:grid;place-items:center;flex:none;width:43px;height:43px;border-radius:50%;border:1px solid #fff6;font-size:22px;font-weight:300}
+    @media(max-width:700px){.cover{background-position:81% center;align-items:flex-end}.cover::before{background:linear-gradient(180deg,#07102533 8%,#0710253a 42%,#071025e8 100%)}.content{width:calc(100% - 36px);margin:0 auto;padding:140px 0 26px}h1{font-size:27px}.intro{font-size:12px;margin-bottom:22px}.card{min-height:100px;padding:14px;gap:14px;border-radius:16px}img{width:60px;height:60px;border-radius:12px}h2{font-size:20px}.desc{font-size:11px}.arrow{width:34px;height:34px;font-size:18px}}
+    @media(prefers-reduced-motion:reduce){.card{transition:none}}
   </style>
 </head>
 <body>
-  <div class="cover">
-    <header class="wrap">
-      <a class="brand" href="./" aria-label="Beryl 作品集首页"><span class="brand-mark" aria-hidden="true">B</span>Beryl</a>
-      <a class="nav" href="#projects">Selected work ↓</a>
-    </header>
-    <main class="wrap">
-      <h1 class="sr-only">Beryl 的 AI 项目作品集</h1>
-      <div class="projects" id="projects">
-        <a class="project emotion" href="./emotion.html?v=4" aria-label="打开情绪雷达演示">
-          <img class="project-icon" src="./assets/radar-icon.jpg" alt="" width="88" height="88">
-          <span class="project-copy"><h2>情绪雷达</h2><p>新闻情绪、行情与泡泡玛特预测回放</p></span>
-          <span class="project-action" aria-hidden="true">→</span>
-        </a>
-        <a class="project medical" href="./medical.html?v=4" aria-label="打开 AI 医疗竞对日报演示">
-          <img class="project-icon" src="./assets/report-icon.jpg" alt="" width="88" height="88">
-          <span class="project-copy"><h2>AI 医疗竞对日报</h2><p>多 Agent 生成流程与完整日报回放</p></span>
-          <span class="project-action" aria-hidden="true">→</span>
-        </a>
+  <main class="cover">
+    <section class="content" aria-label="作品集项目">
+      <h1>Beryl作品集</h1>
+      <p class="intro">点击下方标签，浏览具体项目</p>
+      <div class="cards">
+        <a class="card" href="./emotion.html?v=4" aria-label="打开情绪雷达演示"><img src="./assets/radar-icon.jpg" alt="" width="88" height="88"><span class="copy"><h2>情绪雷达</h2><p class="desc">新闻情绪、行情与泡泡玛特预测回放</p></span><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="card" href="./medical.html?v=4" aria-label="打开 AI 医疗竞对日报演示"><img src="./assets/report-icon.jpg" alt="" width="88" height="88"><span class="copy"><h2>AI 医疗竞对日报</h2><p class="desc">多 Agent 生成流程与完整日报回放</p></span><span class="arrow" aria-hidden="true">→</span></a>
       </div>
-    </main>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
