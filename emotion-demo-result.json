@@ -5,104 +5,107 @@
     "market": "港股"
   },
   "history_info": {
-    "source": "内置历史快照",
-    "as_of": "2026-10-20",
-    "snapshot": true
+    "source": "腾讯财经在线行情",
+    "as_of": "2026-10-23",
+    "snapshot": false,
+    "proxy_factors": [
+      "sector:同类股篮子"
+    ]
   },
   "metrics": {
-    "probability": 63,
-    "score": 79,
-    "confidence": 77,
-    "range": "鏄庢棩鏂瑰悜鍒嗙被",
-    "stage": "升温",
+    "probability": 48,
+    "score": 51,
+    "confidence": 75,
+    "range": "下一交易日方向分类",
+    "stage": "分化",
     "risk": "中等",
-    "volatility": "中高",
-    "subtitle": "行情来自截至 2026-10-20 的内置快照；当前新闻用于情绪修正。该结果是模型流程演示，并非当前交易日预测。"
+    "volatility": "中等",
+    "subtitle": "先用历史股价、恒生指数、同类股篮子与 HKD/CNY 训练涨跌分类模型，再叠加新闻情绪，对下一交易日方向做修正。预测仅用于展示模型流程，请结合滚动回测表现判断可靠性。"
   },
   "bars": [
     {
-      "label": "2026-10-14",
-      "date": "2026-10-14",
-      "value": 72,
+      "label": "2026-10-20",
+      "date": "2026-10-20",
+      "value": 71,
       "alt": false,
       "return": "—",
       "return_pct": null,
-      "price": 149.0,
-      "is_prediction": false
-    },
-    {
-      "label": "2026-10-15",
-      "date": "2026-10-15",
-      "value": 71,
-      "alt": false,
-      "return": "-2.35%",
-      "return_pct": -2.35,
-      "price": 145.5,
-      "is_prediction": false
-    },
-    {
-      "label": "2026-10-16",
-      "date": "2026-10-16",
-      "value": 71,
-      "alt": false,
-      "return": "-2.27%",
-      "return_pct": -2.27,
-      "price": 142.2,
-      "is_prediction": false
-    },
-    {
-      "label": "2026-10-20",
-      "date": "2026-10-20",
-      "value": 70,
-      "alt": false,
-      "return": "-4.08%",
-      "return_pct": -4.08,
       "price": 136.4,
       "is_prediction": false
     },
     {
       "label": "2026-10-21",
       "date": "2026-10-21",
-      "value": 51,
+      "value": 70,
+      "alt": false,
+      "return": "-4.84%",
+      "return_pct": -4.84,
+      "price": 129.8,
+      "is_prediction": false
+    },
+    {
+      "label": "2026-10-22",
+      "date": "2026-10-22",
+      "value": 70,
+      "alt": false,
+      "return": "-1.00%",
+      "return_pct": -1.0,
+      "price": 128.5,
+      "is_prediction": false
+    },
+    {
+      "label": "2026-10-23",
+      "date": "2026-10-23",
+      "value": 70,
+      "alt": false,
+      "return": "+2.49%",
+      "return_pct": 2.49,
+      "price": 131.7,
+      "is_prediction": false
+    },
+    {
+      "label": "2026-10-26",
+      "date": "2026-10-26",
+      "value": 47,
       "alt": true,
-      "return": "+1.09%",
-      "return_pct": 1.09,
-      "price": 137.89,
+      "return": "-0.21%",
+      "return_pct": -0.21,
+      "price": 131.42,
       "is_prediction": true
     }
   ],
-  "current_price": 136.4,
-  "prediction_label": "历史快照演示：明日上涨",
-  "expected_move_pct": 1.09,
-  "prediction_reason": "行情来自截至 2026-10-20 的内置快照；当前新闻用于情绪修正。该结果是模型流程演示，并非当前交易日预测。",
+  "current_price": 131.7,
+  "prediction_label": "下一交易日下跌",
+  "expected_move_pct": 0.21,
+  "prediction_reason": "模型方向接近五五开：下一交易日上涨概率为 48%，对应预测涨跌幅仅 -0.21%；这一信号很弱。",
   "backtest": {
-    "train_size": 750,
-    "test_size": 687,
+    "train_size": 753,
+    "test_size": 690,
     "split_date": "2024-01-02",
-    "accuracy": 0.4847,
-    "precision": 0.5,
-    "recall": 0.2825,
+    "accuracy": 0.5101,
+    "precision": 0.5411,
+    "recall": 0.3155,
     "mode": "rolling",
     "refit_interval": 20,
-    "last_test_date": "2026-10-16"
+    "last_test_date": "2026-10-22"
   },
   "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
   "drivers": [
     {
       "title": "情绪方向",
-      "text": "情绪均值 +0.100，短期变化率 -0.200，更接近动态情绪因子的判断方式。",
-      "tone": "good",
-      "badge": "升温"
+      "text": "情绪均值 -0.250，短期变化率 -0.500，更接近动态情绪因子的判断方式。",
+      "tone": "bad",
+      "badge": "分化"
     },
     {
       "title": "同类板块联动",
-      "text": "原始同类股 5 日动量 -8.82%，合成联动因子 +0.78%，再叠加板块新闻共振 100%。",
+      "text": "原始同类股 5 日动量 -0.16%，合成联动因子 +0.09%，再叠加板块新闻共振 100%。",
       "tone": "good",
       "badge": "peer basket"
     },
     {
       "title": "社交情绪代理",
-      "text": "当前没有 Wind 历史情绪库，这版先用成交量异常、成交额异常、波动放大和板块共振合成讨论代理指数，最新代理值 +1.709。",
+      "text": "当前没有 Wind 历史情绪库，这版先用成交量异常、成交额异常、波动放大和板块共振合成讨论代理指数，最新代理值 +0.737。",
       "tone": "warn",
       "badge": "proxy"
     }
@@ -110,13 +113,13 @@
   "emotion_cards": [
     {
       "title": "情绪阶段",
-      "text": "正向内容占比 10%，负向内容占比 0%，当前阶段判断为“升温”。",
-      "tone": "good",
-      "badge": "升温"
+      "text": "正向内容占比 0%，负向内容占比 25%，当前阶段判断为“分化”。",
+      "tone": "bad",
+      "badge": "分化"
     },
     {
       "title": "风险提醒",
-      "text": "近 10 日实现波动率约 1.62%，如果后续负面新闻继续集中，模型会优先下调概率和置信度。",
+      "text": "近 10 日实现波动率约 2.14%，如果后续负面新闻继续集中，模型会优先下调概率和置信度。",
       "tone": "warn",
       "badge": "中等"
     },
@@ -130,104 +133,56 @@
   "factor_snapshot": [
     {
       "name": "新闻热度",
-      "value": "32 / 情绪样本强度"
+      "value": "30 / 情绪样本强度"
     },
     {
       "name": "恒生指数",
-      "value": "-1.66% / 5日"
+      "value": "-4.03% / 5日"
     },
     {
-      "name": "消费板块指数",
-      "value": "+0.00% / 5日"
+      "name": "同类股篮子",
+      "value": "-0.11% / 5日"
     },
     {
       "name": "HKD/CNY",
-      "value": "-0.10% / 5日"
+      "value": "-0.17% / 5日"
     },
     {
       "name": "同类消费板块联动",
-      "value": "+0.78% / 5日合成"
+      "value": "+0.09% / 5日合成"
     }
   ],
   "news": [
     {
-      "source": "东方财富实时",
-      "title": "高层召开发布会，多措并举扩内需！消费ETF汇添富(159928)昨日巨幅净流入超2.5亿元！泡泡玛特放量跌逾3%！假日服务消费等支撑9月社零增长",
-      "url": "http://stock.eastmoney.com/a/202610203901320785.html",
-      "summary": "2026-10-20 15:49:30 - 消息面上，市场对泡泡玛特三季度的销售数据比较悲观。晨星亚洲股票分析师Jeff Zhang表示，根据第三方监测的数据，泡泡玛特三季度销售同比跌幅超过50%；此外公司至今没有确定业绩发布时间，放大了投资人的担忧。",
-      "time": "2026-10-20 15:49:30 -",
+      "source": "东方财富",
+      "title": "王宁谈泡泡玛特的品牌成长与消费者需求",
+      "url": "https://finance.eastmoney.com/a/202610223904613944.html",
+      "summary": "10月22日的报道记录了创始人王宁对公司品牌成长、线下门店和消费者需求的回顾。",
+      "time": "2026-10-22 23:05:00",
       "keyword": "泡泡玛特"
     },
     {
-      "source": "东方财富实时",
-      "title": "泡泡玛特跌超5%",
-      "url": "http://finance.eastmoney.com/a/202610203901116660.html",
-      "summary": "2026-10-20 11:05:26 - 泡泡玛特跌超5%，股价报135港元，成交额超15亿港元。",
-      "time": "2026-10-20 11:05:26 -",
+      "source": "东方财富·红星资本局",
+      "title": "泡泡玛特连续六个交易日下跌，市场关注业绩与股价调整",
+      "url": "https://finance.eastmoney.com/a/202610223904053790.html",
+      "summary": "10月22日报道称，泡泡玛特连续六个交易日下跌，累计跌幅超过14%；投资者正关注后续经营数据。",
+      "time": "2026-10-22",
       "keyword": "泡泡玛特"
     },
     {
-      "source": "东方财富实时",
-      "title": "泡泡玛特前设计师品牌“毛草乐园”已完成种子轮融资，并启动新一轮融资",
-      "url": "http://finance.eastmoney.com/a/202610193899748961.html",
-      "summary": "2026-10-19 12:05:17 - 公开资料显示，毛草乐园是一个以IP为核心的潮流毛绒品牌，公司成立于2025年初，团队来自泡泡玛特与大疆。其中，创始人王丽丽是泡泡玛特前设计师，曾参与Crybaby、Molly、Labubu等核心IP开发。联合创始人Michael则为前大疆某BU负责人。",
-      "time": "2026-10-19 12:05:17 -",
+      "source": "东方财富",
+      "title": "段永平表示还会买入一些泡泡玛特，持股不会超过10%",
+      "url": "https://finance.eastmoney.com/a/202610213902731897.html",
+      "summary": "10月21日，段永平回应投资者提问，表示可能继续买入泡泡玛特，但不会把持股比例提高到10%以上。",
+      "time": "2026-10-21 17:46:38",
       "keyword": "泡泡玛特"
     },
     {
-      "source": "东方财富实时",
-      "title": "ESG典型案例丨泡泡玛特的ESG试验：当潮玩开始认真谈可持续",
-      "url": "http://finance.eastmoney.com/a/202610163898216627.html",
-      "summary": "2026-10-16 11:51:09 - 当“创造潮流”遇上“传递美好”，泡泡玛特正在探索怎样的可持续发展路径？ 把ESG写进公司骨架 泡泡玛特的ESG治理，从董事会开始。 公司构建了以董事会为最高责任与决策机构、ESG管理团队和ESG协同团队共同参与的三层管治架构。",
-      "time": "2026-10-16 11:51:09 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "潮玩巨头出海现“分水岭” 泡泡玛特如何突围“高基数”？",
-      "url": "http://finance.eastmoney.com/a/202610143895252668.html",
-      "summary": "2026-10-14 11:12:00 - 截至发稿，布鲁可(00325.HK)涨4.90%，名创优品(09896.HK)涨3.98%，泡泡玛特(09992.HK)跌0.13%。 消息面上，上述个股的异动或与高盛最新发布的研究报告相关。",
-      "time": "2026-10-14 11:12:00 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "华为推出泡泡玛特联名款手表",
-      "url": "http://finance.eastmoney.com/a/202610013888192667.html",
-      "summary": "2026-10-01 10:09:00 - 10月1日，华为推出泡泡玛特联名款手表华为WATCH FIT 5，该手表支持12种情绪状态监测。",
-      "time": "2026-10-01 10:09:00 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "华为nova 16 Pro推出泡泡玛特联名款",
-      "url": "http://finance.eastmoney.com/a/202610013888291755.html",
-      "summary": "2026-10-01 09:31:21 - 10月1日，华为nova 16 Pro推出泡泡玛特联名款礼盒，售价3899元，手机内存配置为12GB+256GB，包含联名手机壳、手机包及挂件及联名定制主题。",
-      "time": "2026-10-01 09:31:21 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "华为泡泡玛特联名款手表开售",
-      "url": "http://finance.eastmoney.com/a/202610013888189214.html",
-      "summary": "2026-10-01 09:11:21 - 10月1日，华为泡泡玛特联名款手表华为WATCH FIT 5开售，搭载华为自研芯片、64GB存储、蓝牙6.0，新增数字温度传感器，支持腕温趋势监测，售价1199元。",
-      "time": "2026-10-01 09:11:21 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "泡泡玛特：2026年中期净利润50.38亿元 同比增长10.14%",
-      "url": "http://finance.eastmoney.com/a/202609243884239995.html",
-      "summary": "2026-09-24 22:57:51 - 中证智能财讯泡泡玛特（09992）9月24日披露2026年中期报告。报告期内，公司实现营业收入171.73亿元，同比增长23.76%；归母净利润50.38亿元，同比增长10.14%；据报告显示，泡泡玛特基本每股收益为3.8元，平均净资产收益率为22.65%。",
-      "time": "2026-09-24 22:57:51 -",
-      "keyword": "泡泡玛特"
-    },
-    {
-      "source": "东方财富实时",
-      "title": "奶油风带火女装界“泡泡玛特”：49元发夹炒到快两百，有人5天花了3万",
-      "url": "http://biz.eastmoney.com/a/202609243883886893.html",
-      "summary": "2026-09-24 20:56:15 - 女装界的“泡泡玛特”：0.01元预约码被挂700元，49元发夹二手炒到快两百 关于TWOI的火，有几组标志性的数据屡次出现在相关讨论中。今年7月，其主理人兵熊小英的一场直播有9万人抢购，热门款几乎秒空，销售额超千万。",
-      "time": "2026-09-24 20:56:15 -",
+      "source": "东方财富",
+      "title": "市场担忧泡泡玛特三季度销售表现",
+      "url": "https://stock.eastmoney.com/a/202610203901320785.html",
+      "summary": "10月20日的报道援引第三方监测数据与分析师观点，指出市场担忧三季度销售表现；这不是公司正式披露的季度业绩。",
+      "time": "2026-10-20 15:49:30",
       "keyword": "泡泡玛特"
     }
   ],
@@ -235,49 +190,51 @@
   "heatmap": [
     {
       "name": "新闻热度",
-      "value": "32 / 情绪样本强度"
+      "value": "30 / 情绪样本强度"
     },
     {
       "name": "恒生指数",
-      "value": "-1.66% / 5日"
+      "value": "-4.03% / 5日"
     },
     {
-      "name": "消费板块指数",
-      "value": "+0.00% / 5日"
+      "name": "同类股篮子",
+      "value": "-0.11% / 5日"
     },
     {
       "name": "HKD/CNY",
-      "value": "-0.10% / 5日"
+      "value": "-0.17% / 5日"
     },
     {
       "name": "同类消费板块联动",
-      "value": "+0.78% / 5日合成"
+      "value": "+0.09% / 5日合成"
     }
   ],
   "feature_values": {
-    "avg_sentiment": 0.1,
-    "sentiment_trend": -0.2,
-    "positive_ratio": 0.1,
-    "negative_ratio": 0.0,
-    "news_count": 10,
-    "source_count": 1,
+    "avg_sentiment": -0.25,
+    "sentiment_trend": -0.5,
+    "positive_ratio": 0.0,
+    "negative_ratio": 0.25,
+    "news_count": 4,
+    "source_count": 2,
     "keyword_count": 1,
-    "stock_5d_return": -0.0882,
-    "stock_10d_return": -0.0901,
-    "hsi_5d_return": -0.0166,
-    "sector_5d_return": 0.0,
-    "consumer_5d_return": 0.0,
-    "fx_5d_return": -0.001,
-    "peer_5d_return": -0.0882,
-    "peer_linkage": 0.0078,
+    "stock_5d_return": -0.0948,
+    "stock_10d_return": -0.1364,
+    "hsi_5d_return": -0.0403,
+    "sector_5d_return": -0.0011,
+    "consumer_5d_return": -0.0011,
+    "fx_5d_return": -0.0017,
+    "peer_5d_return": -0.0016,
+    "peer_linkage": 0.0009,
     "sector_resonance": 1.0,
-    "attention_proxy": 3.3941,
-    "discussion_proxy": 1.7093,
-    "realized_vol": 0.0162,
-    "relative_strength": -0.0716,
-    "base_up_probability": 0.5857,
-    "sentiment_adjustment": 0.043
+    "attention_proxy": 1.4429,
+    "discussion_proxy": 0.7368,
+    "realized_vol": 0.0214,
+    "relative_strength": -0.0546,
+    "base_up_probability": 0.4927,
+    "sentiment_adjustment": -0.0175
   },
-  "updated_at": "2026-10-20 17:13:56",
-  "fetch_errors": []
+  "updated_at": "2026-10-23 16:44:43",
+  "fetch_errors": [],
+  "forecast_run_at_hkt": "2026-10-23T16:46:10+08:00",
+  "news_note": "新闻由公开报道人工筛选与核对；显示文章原发布日期，未发现 10 月 23 日可核实的公司新公告。"
 }

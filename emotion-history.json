@@ -1,7 +1,45 @@
 {
   "schema_version": 1,
-  "last_checked_at_hkt": null,
+  "last_checked_at_hkt": "2026-10-23T16:46:10+08:00",
   "records": [
+    {
+      "id": "09992-hk-2026-10-23",
+      "stock_name": "泡泡玛特",
+      "stock_code": "09992.HK",
+      "forecast_date": "2026-10-23",
+      "target_date": "2026-10-26",
+      "recorded_at_hkt": "2026-10-23T16:46:10+08:00",
+      "mode": "live_close",
+      "base_close_hkd": 131.7,
+      "predicted_close_hkd": 131.42,
+      "emotion_label": "分化",
+      "emotion_score": 51,
+      "up_probability_pct": 48,
+      "model_name": "XGBoost + RandomForest + ExtraTrees (Rolling Classifier)",
+      "news": [
+        {
+          "title": "王宁谈泡泡玛特的品牌成长与消费者需求",
+          "url": "https://finance.eastmoney.com/a/202610223904613944.html",
+          "source": "东方财富"
+        },
+        {
+          "title": "泡泡玛特连续六个交易日下跌，市场关注业绩与股价调整",
+          "url": "https://finance.eastmoney.com/a/202610223904053790.html",
+          "source": "东方财富·红星资本局"
+        },
+        {
+          "title": "段永平表示还会买入一些泡泡玛特，持股不会超过10%",
+          "url": "https://finance.eastmoney.com/a/202610213902731897.html",
+          "source": "东方财富"
+        }
+      ],
+      "actual_date": null,
+      "actual_close_hkd": null,
+      "error_hkd": null,
+      "absolute_error_pct": null,
+      "actual_source": null,
+      "price_source": "腾讯财经在线行情"
+    },
     {
       "id": "09992-hk-2026-10-20",
       "stock_name": "泡泡玛特",
@@ -33,11 +71,11 @@
           "source": "东方财富实时"
         }
       ],
-      "actual_date": null,
-      "actual_close_hkd": null,
-      "error_hkd": null,
-      "absolute_error_pct": null,
-      "actual_source": null,
+      "actual_date": "2026-10-21",
+      "actual_close_hkd": 129.8,
+      "error_hkd": 8.09,
+      "absolute_error_pct": 6.23,
+      "actual_source": "腾讯财经日线收盘价（未复权）",
       "price_source": "内置历史行情快照（截至2026-10-20）"
     }
   ]
